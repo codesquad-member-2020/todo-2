@@ -15,36 +15,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxF-8O-da0">
-                                <rect key="frame" x="0.0" y="89" width="367" height="725"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxF-8O-da0">
+                                <rect key="frame" x="0.0" y="50" width="367" height="764"/>
                                 <connections>
                                     <segue destination="bOA-3N-Alf" kind="embed" id="I2A-Lf-N1o"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-5a-hRo">
-                                <rect key="frame" x="414" y="89" width="367" height="725"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-5a-hRo">
+                                <rect key="frame" x="414" y="50" width="367" height="764"/>
                                 <connections>
                                     <segue destination="DsO-Xs-olk" kind="embed" id="r2U-kh-Q8j"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-9A-Tsj">
-                                <rect key="frame" x="827" y="89" width="367" height="725"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-9A-Tsj">
+                                <rect key="frame" x="827" y="50" width="367" height="764"/>
                                 <connections>
                                     <segue destination="I46-Lw-Tjf" kind="embed" id="MQ3-IS-ZHs"/>
                                 </connections>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-tI-e9x">
-                                <rect key="frame" x="0.0" y="39" width="1194" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-tI-e9x">
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
                                 <items>
                                     <navigationItem title="Title" id="04l-II-J9b"/>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gIA-5a-hRo" firstAttribute="top" secondItem="0kh-tI-e9x" secondAttribute="bottom" id="0WO-ix-17F"/>
+                            <constraint firstItem="0kh-tI-e9x" firstAttribute="centerX" secondItem="gIA-5a-hRo" secondAttribute="centerX" id="9e7-iz-rNr"/>
+                            <constraint firstItem="lxF-8O-da0" firstAttribute="top" secondItem="gIA-5a-hRo" secondAttribute="top" id="BRL-kY-s7o"/>
+                            <constraint firstItem="0kh-tI-e9x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NLK-qM-rhx"/>
+                            <constraint firstItem="uHW-9A-Tsj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Rnn-Gv-nsQ"/>
+                            <constraint firstItem="lxF-8O-da0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.44:1" id="aO8-di-tV5"/>
+                            <constraint firstItem="0kh-tI-e9x" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="b3H-NS-LtQ"/>
+                            <constraint firstItem="gIA-5a-hRo" firstAttribute="width" secondItem="lxF-8O-da0" secondAttribute="width" id="cU8-Fn-7fs"/>
+                            <constraint firstItem="uHW-9A-Tsj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gNl-CO-nzf"/>
+                            <constraint firstItem="lxF-8O-da0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="iyD-qS-azP"/>
+                            <constraint firstItem="lxF-8O-da0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k7H-gt-Y6L"/>
+                            <constraint firstItem="0kh-tI-e9x" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oV9-zT-aAc"/>
+                            <constraint firstItem="uHW-9A-Tsj" firstAttribute="top" secondItem="gIA-5a-hRo" secondAttribute="top" id="pyk-P8-Sqp"/>
+                            <constraint firstItem="gIA-5a-hRo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="sk6-Od-C7e"/>
+                            <constraint firstItem="uHW-9A-Tsj" firstAttribute="width" secondItem="gIA-5a-hRo" secondAttribute="width" id="zDx-ll-Nhe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -57,7 +70,7 @@
             <objects>
                 <tableViewController id="bOA-3N-Alf" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Se-1n-BZJ">
-                        <rect key="frame" x="0.0" y="0.0" width="367" height="722"/>
+                        <rect key="frame" x="0.0" y="0.0" width="367" height="764"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -85,7 +98,7 @@
             <objects>
                 <tableViewController id="DsO-Xs-olk" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TR0-vI-CsW">
-                        <rect key="frame" x="0.0" y="0.0" width="367" height="722"/>
+                        <rect key="frame" x="0.0" y="0.0" width="367" height="764"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -113,7 +126,7 @@
             <objects>
                 <tableViewController id="I46-Lw-Tjf" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C04-9G-qCw">
-                        <rect key="frame" x="0.0" y="0.0" width="367" height="722"/>
+                        <rect key="frame" x="0.0" y="0.0" width="367" height="764"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
