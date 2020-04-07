@@ -22,7 +22,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-5a-hRo">
-                                <rect key="frame" x="414" y="50" width="367" height="764"/>
+                                <rect key="frame" x="413.5" y="50" width="367" height="764"/>
                                 <connections>
                                     <segue destination="DsO-Xs-olk" kind="embed" id="r2U-kh-Q8j"/>
                                 </connections>
@@ -36,7 +36,9 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-tI-e9x">
                                 <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
                                 <items>
-                                    <navigationItem title="Title" id="04l-II-J9b"/>
+                                    <navigationItem title="Title" id="04l-II-J9b">
+                                        <barButtonItem key="rightBarButtonItem" title="Menu" id="CE4-Zn-sK2"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
