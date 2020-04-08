@@ -10,9 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var toDoViewController: TodoViewController?
+    var progressViewController: ProgressViewController?
+    var completeViewContrller: CompleteViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToDo" {
+            toDoViewController = segue.destination as? TodoViewController
+        } else if segue.identifier == "Progress" {
+            progressViewController = segue.destination as? ProgressViewController
+        } else {
+            completeViewContrller = segue.destination as? CompleteViewController
+        }
     }
 
 
