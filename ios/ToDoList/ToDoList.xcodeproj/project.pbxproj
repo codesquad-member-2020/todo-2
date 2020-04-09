@@ -16,6 +16,7 @@
 		AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */; };
 		AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */; };
 		AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */; };
+		AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
 		AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoListDataSource.swift; sourceTree = "<group>"; };
+		AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */,
 				AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */,
 				AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */,
+				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */,
 				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
 				AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */,

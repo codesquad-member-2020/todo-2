@@ -155,6 +155,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="taskTitleLabel" destination="zg7-7W-j1s" id="oxX-NW-WLT"/>
+                                            <segue destination="1Jt-AI-A28" kind="presentation" id="Mg2-x2-KWZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,12 +182,41 @@
             </objects>
             <point key="canvasLocation" x="139" y="1004"/>
         </scene>
+        <!--Task Detail View Controller-->
+        <scene sceneID="APR-1X-LYc">
+            <objects>
+                <viewController id="1Jt-AI-A28" customClass="TaskDetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gZA-5f-PbR">
+                        <rect key="frame" x="0.0" y="0.0" width="367" height="742"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gf-mE-WQo">
+                                <rect key="frame" x="20" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelEditButton:" destination="1Jt-AI-A28" eventType="touchUpInside" id="1LA-i6-0dR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EGe-Dr-SFX" firstAttribute="bottom" secondItem="8Gf-mE-WQo" secondAttribute="bottom" constant="692" id="qeO-zn-bnl"/>
+                            <constraint firstItem="8Gf-mE-WQo" firstAttribute="top" secondItem="EGe-Dr-SFX" secondAttribute="top" constant="20" id="v5x-o2-0EP"/>
+                            <constraint firstItem="8Gf-mE-WQo" firstAttribute="leading" secondItem="EGe-Dr-SFX" secondAttribute="leading" constant="20" id="yOI-dI-USZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EGe-Dr-SFX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFv-CZ-OaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="642" y="765"/>
+        </scene>
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="63F-sy-3Me"/>
+        <segue reference="SSs-Ce-Srb"/>
     </inferredMetricsTieBreakers>
 </document>
