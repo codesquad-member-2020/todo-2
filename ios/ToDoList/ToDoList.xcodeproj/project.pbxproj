@@ -14,6 +14,8 @@
 		AB3BD0EB243B41A6001C9CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */; };
 		AB3BD0EE243B41A6001C9CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */; };
 		AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */; };
+		AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */; };
+		AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		AB3BD0ED243B41A6001C9CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB3BD0EF243B41A6001C9CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
+		AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoListDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			children = (
 				AB3BD0E5243B41A5001C9CDC /* ViewController.swift */,
 				AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */,
+				AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */,
+				AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,7 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
+				AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */,
 				AB3BD0E6243B41A5001C9CDC /* ViewController.swift in Sources */,
 				AB3BD0E2243B41A5001C9CDC /* AppDelegate.swift in Sources */,
 				AB3BD0E4243B41A5001C9CDC /* SceneDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController {
+class TodoListViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var cardCount: UILabel!
     @IBOutlet weak var taskCardTableView: UITableView!
@@ -16,6 +16,8 @@ class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cardCountLabelSetRadius()
+        
+        taskCardTableView.delegate = self
     }
     
     private func cardCountLabelSetRadius() {
