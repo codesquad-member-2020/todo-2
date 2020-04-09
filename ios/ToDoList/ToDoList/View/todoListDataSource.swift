@@ -9,13 +9,16 @@
 import UIKit
 
 class todoListDataSource: NSObject, UITableViewDataSource {
+    var model: [Int]!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCardCell else { return UITableViewCell() }
+        
+        cell.taskTitleLabel.text = String(model[indexPath.row])
+        return cell
     }
-    
-
 }

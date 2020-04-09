@@ -122,36 +122,37 @@
                                 <rect key="frame" x="0.0" y="60" width="367" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="xnh-yx-fQr" customClass="TaskCardCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="367" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="60" id="xnh-yx-fQr" customClass="TaskCardCell" customModule="ToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="367" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xnh-yx-fQr" id="6MA-ps-F6x">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="text.justify" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fsr-2Z-mzZ">
-                                                    <rect key="frame" x="7" y="8.5" width="43.5" height="26.5"/>
+                                                    <rect key="frame" x="15" y="16.5" width="30" height="26.5"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="GmT-ti-r88"/>
+                                                        <constraint firstAttribute="height" constant="30" id="ITQ-Qd-Scm"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg7-7W-j1s">
-                                                    <rect key="frame" x="60.5" y="7" width="291.5" height="30"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                    <rect key="frame" x="65" y="15" width="267" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zg7-7W-j1s" firstAttribute="bottom" secondItem="Fsr-2Z-mzZ" secondAttribute="bottom" id="B9V-Hr-G7H"/>
-                                                <constraint firstItem="zg7-7W-j1s" firstAttribute="top" secondItem="Fsr-2Z-mzZ" secondAttribute="top" id="D7T-Qz-4FD"/>
-                                                <constraint firstItem="Fsr-2Z-mzZ" firstAttribute="top" secondItem="6MA-ps-F6x" secondAttribute="top" constant="7" id="JSH-Lt-6DB"/>
-                                                <constraint firstAttribute="trailing" secondItem="zg7-7W-j1s" secondAttribute="trailing" constant="15" id="eRK-0b-XJe"/>
-                                                <constraint firstItem="Fsr-2Z-mzZ" firstAttribute="leading" secondItem="6MA-ps-F6x" secondAttribute="leading" constant="7" id="f3e-3N-jHa"/>
-                                                <constraint firstItem="zg7-7W-j1s" firstAttribute="leading" secondItem="Fsr-2Z-mzZ" secondAttribute="trailing" constant="10" id="nGw-HX-wo3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zg7-7W-j1s" secondAttribute="trailing" constant="20" id="5Pu-0v-ctJ"/>
+                                                <constraint firstItem="zg7-7W-j1s" firstAttribute="leading" secondItem="Fsr-2Z-mzZ" secondAttribute="trailing" constant="20" id="PV0-xF-VHQ"/>
+                                                <constraint firstItem="zg7-7W-j1s" firstAttribute="top" secondItem="6MA-ps-F6x" secondAttribute="topMargin" constant="4" id="Vcw-GK-s5e"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zg7-7W-j1s" secondAttribute="bottom" constant="4" id="Wff-Xb-Coa"/>
+                                                <constraint firstItem="Fsr-2Z-mzZ" firstAttribute="top" secondItem="6MA-ps-F6x" secondAttribute="top" constant="15" id="gMB-w2-YCp"/>
+                                                <constraint firstItem="Fsr-2Z-mzZ" firstAttribute="leading" secondItem="6MA-ps-F6x" secondAttribute="leading" constant="15" id="hdM-RP-DwZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="Fsr-2Z-mzZ" firstAttribute="width" secondItem="xnh-yx-fQr" secondAttribute="height" multiplier="1:1" id="2Ka-uT-XvJ"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="taskTitleLabel" destination="zg7-7W-j1s" id="oxX-NW-WLT"/>
                                         </connections>
