@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var toDoViewController: TodoViewController?
-    var progressViewController: ProgressViewController?
-    var completeViewContrller: CompleteViewController?
+    var toDoViewController: TodoListViewController?
+    var progressViewController: TodoListViewController?
+    var completeViewContrller: TodoListViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +21,12 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDo" {
-            toDoViewController = segue.destination as? TodoViewController
+            toDoViewController = segue.destination as? TodoListViewController
         } else if segue.identifier == "Progress" {
-            progressViewController = segue.destination as? ProgressViewController
+            progressViewController = segue.destination as? TodoListViewController
         } else {
-            completeViewContrller = segue.destination as? CompleteViewController
+            completeViewContrller = segue.destination as? TodoListViewController
         }
     }
-
-
 }
 

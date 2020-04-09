@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-5a-hRo">
-                                <rect key="frame" x="414" y="52" width="367" height="762"/>
+                                <rect key="frame" x="413.5" y="52" width="367" height="762"/>
                                 <connections>
                                     <segue destination="BRG-dn-FqZ" kind="embed" identifier="Progress" id="4zZ-z2-DMT"/>
                                 </connections>
@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="138.69346733668343" y="137.41007194244605"/>
         </scene>
-        <!--View Controller-->
+        <!--Todo List View Controller-->
         <scene sceneID="0aQ-ix-fph">
             <objects>
-                <viewController id="BRG-dn-FqZ" sceneMemberID="viewController">
+                <viewController id="BRG-dn-FqZ" customClass="TodoListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GiH-Ic-pdW">
                         <rect key="frame" x="0.0" y="0.0" width="367" height="762"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,14 +119,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kZN-Bh-k7P">
-                                <rect key="frame" x="0.0" y="60" width="367" height="682"/>
+                                <rect key="frame" x="0.0" y="60" width="367" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kZN-Bh-k7P" firstAttribute="trailing" secondItem="46z-Hx-HWd" secondAttribute="trailing" id="7mc-Hj-8v4"/>
-                            <constraint firstItem="46z-Hx-HWd" firstAttribute="bottom" secondItem="kZN-Bh-k7P" secondAttribute="bottom" constant="20" id="DdU-5I-Pxk"/>
+                            <constraint firstItem="46z-Hx-HWd" firstAttribute="bottom" secondItem="kZN-Bh-k7P" secondAttribute="bottom" id="DdU-5I-Pxk"/>
                             <constraint firstItem="0dI-KB-Rmt" firstAttribute="trailing" secondItem="46z-Hx-HWd" secondAttribute="trailing" id="DoL-VX-P6r"/>
                             <constraint firstItem="kZN-Bh-k7P" firstAttribute="leading" secondItem="46z-Hx-HWd" secondAttribute="leading" id="KSB-2A-wHl"/>
                             <constraint firstItem="kZN-Bh-k7P" firstAttribute="top" secondItem="0dI-KB-Rmt" secondAttribute="bottom" id="KiQ-Vv-S3J"/>
@@ -135,6 +135,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="46z-Hx-HWd"/>
                     </view>
+                    <connections>
+                        <outlet property="cardCount" destination="zTE-fk-F9q" id="7DX-QL-4h3"/>
+                        <outlet property="taskCardTableView" destination="kZN-Bh-k7P" id="pwc-yG-T2o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDQ-j8-tg1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
