@@ -1,3 +1,5 @@
+import '../style/style.scss';
+
 async function getTodoList() {
     const options = {
         method: 'GET',
