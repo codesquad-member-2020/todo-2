@@ -26,7 +26,7 @@ class todoListDataSource: NSObject, UITableViewDataSource {
         if editingStyle == .delete {
             model.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            NotificationCenter.default.post(name: NSNotification.Name("deleteRow"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .deleteRow, object: nil, userInfo: nil)
         }
     }
 }

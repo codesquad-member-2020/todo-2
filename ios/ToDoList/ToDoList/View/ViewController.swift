@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDo" {
             toDoViewController = segue.destination as? TodoListViewController
@@ -27,5 +28,6 @@ class ViewController: UIViewController {
             completeViewContrller = segue.destination as? TodoListViewController
         }
     }
+ */
 }
 

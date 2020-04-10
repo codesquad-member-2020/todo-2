@@ -28,7 +28,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         cardCount.text = String(model.count)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector (reCountCardList),
-                                               name: NSNotification.Name("deleteRow"),
+                                               name: .deleteRow,
                                                object: nil)
     }
     

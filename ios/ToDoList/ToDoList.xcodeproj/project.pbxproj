@@ -17,6 +17,7 @@
 		AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */; };
 		AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */; };
 		AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */; };
+		AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD124244028BA001C9CDC /* NotificationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
 		AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoListDataSource.swift; sourceTree = "<group>"; };
 		AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		AB3BD124244028BA001C9CDC /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */,
 				AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */,
 				AB3BD0EF243B41A6001C9CDC /* Info.plist */,
+				AB3BD124244028BA001C9CDC /* NotificationExtension.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */,
 				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
+				AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
 				AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */,
 				AB3BD0E6243B41A5001C9CDC /* ViewController.swift in Sources */,
