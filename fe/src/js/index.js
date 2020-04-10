@@ -4,8 +4,8 @@ async function getTodoList() {
     const options = {
         method: 'GET',
         headers: {
-            // Accept: 'text/plain;charset=UTF-8',
-            'Content-Type': 'text/plain;charset=UTF-8',
+            Accept: 'application/json;charset=UTF-8',
+            'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*'
         }
     };
