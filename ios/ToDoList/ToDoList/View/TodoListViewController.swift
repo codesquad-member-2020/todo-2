@@ -12,6 +12,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var cardCount: UILabel!
     @IBOutlet weak var taskCardTableView: UITableView!
+    @IBOutlet weak var columnName: UILabel!
+    
+    
     
     private let tableViewDataSource = todoListDataSource()
     var model = [1, 2, 3, 4, 5, 6, 7]

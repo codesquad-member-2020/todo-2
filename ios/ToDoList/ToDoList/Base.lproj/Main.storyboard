@@ -175,6 +175,7 @@
                     </view>
                     <connections>
                         <outlet property="cardCount" destination="zTE-fk-F9q" id="7DX-QL-4h3"/>
+                        <outlet property="columnName" destination="P6c-mL-MLW" id="jhg-Hg-bQt"/>
                         <outlet property="taskCardTableView" destination="kZN-Bh-k7P" id="pwc-yG-T2o"/>
                     </connections>
                 </viewController>
