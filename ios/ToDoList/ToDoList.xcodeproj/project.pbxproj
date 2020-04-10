@@ -66,6 +66,7 @@
 		AB3BD0E0243B41A5001C9CDC /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				AB3BD12624402C97001C9CDC /* Util */,
 				AB3BD11B243E31DD001C9CDC /* View */,
 				AB3BD0E1243B41A5001C9CDC /* AppDelegate.swift */,
 				AB3BD0E3243B41A5001C9CDC /* SceneDelegate.swift */,
@@ -73,7 +74,6 @@
 				AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */,
 				AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */,
 				AB3BD0EF243B41A6001C9CDC /* Info.plist */,
-				AB3BD124244028BA001C9CDC /* NotificationExtension.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -88,6 +88,14 @@
 				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AB3BD12624402C97001C9CDC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AB3BD124244028BA001C9CDC /* NotificationExtension.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
