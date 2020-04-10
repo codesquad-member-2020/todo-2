@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: './src/js/index.js',
+    entry: ['@babel/polyfill', './src/js/index.js'],
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.css', '.scss'],
     },

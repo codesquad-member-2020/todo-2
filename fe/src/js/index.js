@@ -1,12 +1,12 @@
-import '../style/style.scss';
+import '../style/style.scss'; 
 
 async function getTodoList() {
     const options = {
         method: 'GET',
         headers: {
-            Accept: 'application/json;charset=UTF-8',
-            'Content-Type': 'application/json;charset=UTF-8',
-            'Access-Control-Allow-Origin': '*'
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         }
     };
     const response = await fetch(`http://15.164.28.20:8080/mock/projects/1`, options);
