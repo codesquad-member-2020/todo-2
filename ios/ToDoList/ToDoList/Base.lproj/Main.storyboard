@@ -18,13 +18,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-5a-hRo">
                                 <rect key="frame" x="413.5" y="52" width="367" height="762"/>
                                 <connections>
-                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="Progress" id="4zZ-z2-DMT"/>
+                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="Doing" id="4zZ-z2-DMT"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-9A-Tsj">
                                 <rect key="frame" x="827" y="52" width="367" height="762"/>
                                 <connections>
-                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="Complete" id="SSs-Ce-Srb"/>
+                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="Done" id="SSs-Ce-Srb"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-tI-e9x">
@@ -38,7 +38,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxF-8O-da0">
                                 <rect key="frame" x="0.0" y="52" width="367" height="762"/>
                                 <connections>
-                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="ToDo" id="63F-sy-3Me"/>
+                                    <segue destination="BRG-dn-FqZ" kind="embed" identifier="To Do" id="63F-sy-3Me"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -88,7 +88,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재사용 해야할 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6c-mL-MLW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해야할 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6c-mL-MLW">
                                         <rect key="frame" x="55" y="15" width="257" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -261,6 +261,6 @@
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SSs-Ce-Srb"/>
+        <segue reference="4zZ-z2-DMT"/>
     </inferredMetricsTieBreakers>
 </document>

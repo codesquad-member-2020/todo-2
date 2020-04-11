@@ -36,8 +36,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     }
     
     private func cardCountLabelSetRadius() {
-        cardCount.layer.borderColor = UIColor.black.cgColor
-        cardCount.layer.borderWidth = 1.0
         cardCount.layer.masksToBounds = true
         cardCount.layer.cornerRadius = cardCount.frame.size.height/2.0
     }
