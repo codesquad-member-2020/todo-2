@@ -7,7 +7,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.ts$/,
                 include: path.resolve(__dirname, 'src'),
                 loader: 'babel-loader',
             },
