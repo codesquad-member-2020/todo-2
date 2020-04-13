@@ -14,34 +14,23 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var taskCardTableView: UITableView!
     @IBOutlet weak var columnName: UILabel!
     
-    
-    
-    private let tableViewDataSource = todoListDataSource()
-    var model = [1, 2, 3, 4, 5, 6, 7]
-    
+    let tableViewDataSource = TodoListDataSource()
+    let tableViewDelegate = TodoListDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cardCountLabelSetRadius()
         
         taskCardTableView.delegate = self
-        tableViewDataSource.model = model
         taskCardTableView.dataSource = tableViewDataSource
     
-        cardCount.text = String(model.count)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector (reCountCardList),
-                                               name: .deleteRow,
-                                               object: nil)
+        tableViewDataSource.handler = {
+            self.cardCount.text = String(self.tableViewDataSource.model!.count)
+        }
     }
     
     private func cardCountLabelSetRadius() {
         cardCount.layer.masksToBounds = true
         cardCount.layer.cornerRadius = cardCount.frame.size.height/2.0
-    }
-    
-    @objc func reCountCardList() {
-        model = tableViewDataSource.model
-        cardCount.text = String(model.count)
     }
 }

@@ -15,7 +15,7 @@
 		AB3BD0EE243B41A6001C9CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */; };
 		AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */; };
 		AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */; };
-		AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */; };
+		AB3BD121243EE3EB001C9CDC /* TodoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */; };
 		AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */; };
 		AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD124244028BA001C9CDC /* NotificationExtension.swift */; };
 		AB3BD12924403D04001C9CDC /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12824403D04001C9CDC /* CardData.swift */; };
@@ -35,7 +35,7 @@
 		AB3BD0EF243B41A6001C9CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
-		AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoListDataSource.swift; sourceTree = "<group>"; };
+		AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListDataSource.swift; sourceTree = "<group>"; };
 		AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		AB3BD124244028BA001C9CDC /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		AB3BD12824403D04001C9CDC /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				AB3BD0E5243B41A5001C9CDC /* ViewController.swift */,
 				AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */,
 				AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */,
-				AB3BD120243EE3EB001C9CDC /* todoListDataSource.swift */,
+				AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */,
 				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
 			);
 			path = View;
@@ -194,7 +194,7 @@
 				AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */,
 				AB3BD12B24403F32001C9CDC /* APIClient.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
-				AB3BD121243EE3EB001C9CDC /* todoListDataSource.swift in Sources */,
+				AB3BD121243EE3EB001C9CDC /* TodoListDataSource.swift in Sources */,
 				AB3BD12F2441DF40001C9CDC /* CardDetailData.swift in Sources */,
 				AB3BD12924403D04001C9CDC /* CardData.swift in Sources */,
 				AB3BD0E6243B41A5001C9CDC /* ViewController.swift in Sources */,

@@ -10,11 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var toDoViewController: TodoListViewController?
-    var progressViewController: TodoListViewController?
-    var completeViewContrller: TodoListViewController?
+    var toDoViewController: TodoListViewController!
+    var progressViewController: TodoListViewController!
+    var completeViewContrller: TodoListViewController!
     
     let apiClient = APIClient()
+    var cardData: CardData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,6 @@ class ViewController: UIViewController {
                                                selector: #selector (distributeData),
                                                name: .completeLoad,
                                                object: nil)
-        setTitle()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,16 +36,19 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setTitle() {
-        toDoViewController?.columnName.text = "To Do"
-        progressViewController?.columnName.text = "Doing"
-        completeViewContrller?.columnName.text = "Done"
-    }
-    
     @objc func distributeData(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardData] else { return }
-        let model = notificationInfo["responseData"]
-        print(model)
+        self.cardData = notificationInfo["responseData"]
+        
+        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.data[0])
+        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.data[1])
+        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.data[2])
+    }
+    
+    private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CategoryData) {
+        targetViewController.tableViewDataSource.model = categoryData.cards
+        targetViewController.taskCardTableView.reloadData()
+        targetViewController.columnName.text = categoryData.title
     }
     
 }
