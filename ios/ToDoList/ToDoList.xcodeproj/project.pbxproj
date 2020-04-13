@@ -92,9 +92,9 @@
 			children = (
 				AB3BD0E5243B41A5001C9CDC /* ViewController.swift */,
 				AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */,
+				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
 				AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */,
 				AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */,
-				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

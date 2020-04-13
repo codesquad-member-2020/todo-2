@@ -10,13 +10,23 @@ import UIKit
 
 class TaskDetailViewController: UIViewController {
 
+    @IBOutlet weak var detailContent: UITextView!
+    @IBOutlet weak var detailTitle: UITextField!
+    
     @IBAction func cancelEditButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    var cardDetailData: CardDetailData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpDetailView()
+    }
+    
+    private func setUpDetailView() {
+        detailTitle.text = cardDetailData?.title
+        detailContent.text = cardDetailData?.content
     }
 
 }

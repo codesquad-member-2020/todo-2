@@ -15,7 +15,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var columnName: UILabel!
     
     let tableViewDataSource = TodoListDataSource()
-    let tableViewDelegate = TodoListDelegate()
+    let tableViewDelegate = self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,16 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
             self.cardCount.text = String(self.tableViewDataSource.model!.count)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailView = segue.destination as? TaskDetailViewController else { return }
+        
+        let cell = sender as! TaskCardCell
+        let indexPath = taskCardTableView.indexPath(for: cell)
+        let currentRow = (indexPath?.row)!
+        
+        detailView.cardDetailData = tableViewDataSource.model?[currentRow]
+ }
     
     private func cardCountLabelSetRadius() {
         cardCount.layer.masksToBounds = true
