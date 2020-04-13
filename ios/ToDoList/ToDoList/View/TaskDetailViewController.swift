@@ -12,21 +12,34 @@ class TaskDetailViewController: UIViewController {
 
     @IBOutlet weak var detailContent: UITextView!
     @IBOutlet weak var detailTitle: UITextField!
+    @IBOutlet weak var authorTextField: UILabel!
+    @IBOutlet weak var uploadButton: UIImageView!
     
     @IBAction func cancelEditButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     var cardDetailData: CardDetailData?
+    var editIndex: Int?
+    var editTask: (CardDetailData) -> () = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDetailView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchUploadButton))
+        uploadButton.addGestureRecognizer(tapGesture)
     }
     
     private func setUpDetailView() {
         detailTitle.text = cardDetailData?.title
         detailContent.text = cardDetailData?.content
+    }
+    
+    @objc func touchUploadButton() {
+        cardDetailData?.title = detailTitle.text!
+        cardDetailData?.content = detailContent.text!
+        editTask(cardDetailData!)
+        dismiss(animated: true, completion: nil)
     }
 
 }

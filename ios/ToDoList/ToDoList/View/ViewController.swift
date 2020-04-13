@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CategoryData) {
-        targetViewController.tableViewDataSource.model = categoryData.cards
+        targetViewController.tableViewDataSource.cardList = categoryData.cards
         targetViewController.taskCardTableView.reloadData()
         targetViewController.columnName.text = categoryData.title
     }

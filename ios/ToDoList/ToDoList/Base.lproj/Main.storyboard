@@ -155,7 +155,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="taskTitleLabel" destination="zg7-7W-j1s" id="oxX-NW-WLT"/>
-                                            <segue destination="1Jt-AI-A28" kind="presentation" id="Mg2-x2-KWZ"/>
+                                            <segue destination="1Jt-AI-A28" kind="presentation" id="m8X-6n-w74"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -198,12 +198,7 @@
                                     <action selector="cancelEditButton:" destination="1Jt-AI-A28" eventType="touchUpInside" id="1LA-i6-0dR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIJ-kn-e0a">
-                                <rect key="frame" x="20" y="66" width="271" height="49.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow.up.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d0h-EH-edg">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="arrow.up.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d0h-EH-edg">
                                 <rect key="frame" x="307" y="73.5" width="35" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="YLs-gq-S7S"/>
@@ -227,6 +222,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIJ-kn-e0a">
+                                <rect key="frame" x="20" y="66" width="271" height="49.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -250,8 +250,10 @@
                         <viewLayoutGuide key="safeArea" id="EGe-Dr-SFX"/>
                     </view>
                     <connections>
-                        <outlet property="detailContent" destination="z1K-7P-7OT" id="9U5-Jw-w3h"/>
-                        <outlet property="detailTitle" destination="mIJ-kn-e0a" id="JGj-5r-TNo"/>
+                        <outlet property="authorTextField" destination="3wp-bf-hBd" id="Ymc-U7-fBH"/>
+                        <outlet property="detailContent" destination="z1K-7P-7OT" id="ZTJ-RP-Det"/>
+                        <outlet property="detailTitle" destination="mIJ-kn-e0a" id="DZU-LF-kep"/>
+                        <outlet property="uploadButton" destination="d0h-EH-edg" id="EdB-hZ-trd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFv-CZ-OaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

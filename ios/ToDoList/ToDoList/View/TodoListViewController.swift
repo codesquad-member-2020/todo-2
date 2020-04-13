@@ -9,7 +9,7 @@
 import UIKit
 
 class TodoListViewController: UIViewController, UITableViewDelegate {
-
+    
     @IBOutlet weak var cardCount: UILabel!
     @IBOutlet weak var taskCardTableView: UITableView!
     @IBOutlet weak var columnName: UILabel!
@@ -23,9 +23,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         
         taskCardTableView.delegate = self
         taskCardTableView.dataSource = tableViewDataSource
-    
+        
         tableViewDataSource.handler = {
-            self.cardCount.text = String(self.tableViewDataSource.model!.count)
+            self.cardCount.text = String(self.tableViewDataSource.cardList!.count)
         }
     }
     
@@ -36,8 +36,14 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         let indexPath = taskCardTableView.indexPath(for: cell)
         let currentRow = (indexPath?.row)!
         
-        detailView.cardDetailData = tableViewDataSource.model?[currentRow]
- }
+        detailView.cardDetailData = tableViewDataSource.cardList?[currentRow]
+        detailView.editIndex = currentRow
+        
+        detailView.editTask = {
+            self.tableViewDataSource.cardList?[currentRow] = $0
+            self.taskCardTableView.reloadData()
+        }
+    }
     
     private func cardCountLabelSetRadius() {
         cardCount.layer.masksToBounds = true
