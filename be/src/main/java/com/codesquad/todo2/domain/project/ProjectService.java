@@ -42,6 +42,20 @@ public class ProjectService {
         return new CardId(card.getId());
     }
 
+    public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody) {
+        Project project = findProjectByIdOrHandleNotFound(projectId);
+        Category category = project.getCategoryById(categoryId);
+        String title = requestBody.getTitle();
+        String content = requestBody.getContent();
+
+        Card card = category.getCardById(cardId);
+        card.setTitle(title);
+        card.setContent(content);
+
+        projectRepository.save(project);
+        return true; // TODO: handle failure case
+    }
+
     private Project findProjectByIdOrHandleNotFound(Long projectId) {
         Optional<Project> optionalProject = projectRepository.findById(projectId);
         return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow

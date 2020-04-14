@@ -24,8 +24,22 @@ public class ProjectController {
                                                        @PathVariable long categoryId,
                                                        @RequestBody CardTitleContent requestBody) {
                                                        // @RequestAttribute("userName") String userName) {
+                                                       // @RequestAttribute("userId") long userId) ?!?!?!?!
         String userName = "scott"; // TODO: replace with @RequestAttribute when interceptor is implemented
         CardId cardId = projectService.addCard(projectId, categoryId, requestBody, userName);
         return ResponseEntity.ok(ResponseBodyWrapper.ok(cardId));
+    }
+
+    @PutMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
+    public ResponseEntity<ResponseBodyWrapper> editCard(@PathVariable long projectId,
+                                                        @PathVariable long categoryId,
+                                                        @PathVariable long cardId,
+                                                        @RequestBody CardTitleContent requestBody) {
+        boolean edited = projectService.editCard(projectId, categoryId, cardId, requestBody);
+        if (edited) {
+            return ResponseEntity.ok(ResponseBodyWrapper.ok());
+        }
+        return ResponseEntity.badRequest()
+                .body(ResponseBodyWrapper.failed("카드 내용 변경 실패"));
     }
 }

@@ -57,4 +57,13 @@ public class Category {
     public void addCard(Card card) {
         cards.add(card);
     }
+
+    public Card getCardById(long cardId) {
+        for (Card card : cards) {
+            if (card.getId() == cardId) {
+                return card;
+            }
+        }
+        return null; // TODO: handle not found
+    }
 }
