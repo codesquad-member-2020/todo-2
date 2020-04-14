@@ -211,5 +211,3 @@ gradle-app.setting
 
 # End of https://www.gitignore.io/api/java,linux,macos,gradle,intellij
 
-# Project Resource etc
-**/schema.sql
