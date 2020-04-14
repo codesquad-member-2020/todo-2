@@ -13,6 +13,15 @@
 		AB3BD0E9243B41A5001C9CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0E7243B41A5001C9CDC /* Main.storyboard */; };
 		AB3BD0EB243B41A6001C9CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */; };
 		AB3BD0EE243B41A6001C9CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */; };
+		AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */; };
+		AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */; };
+		AB3BD121243EE3EB001C9CDC /* TodoListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */; };
+		AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */; };
+		AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD124244028BA001C9CDC /* NotificationExtension.swift */; };
+		AB3BD12924403D04001C9CDC /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12824403D04001C9CDC /* CardData.swift */; };
+		AB3BD12B24403F32001C9CDC /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12A24403F32001C9CDC /* APIClient.swift */; };
+		AB3BD12D2441DEDB001C9CDC /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */; };
+		AB3BD12F2441DF40001C9CDC /* CardDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,15 @@
 		AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB3BD0ED243B41A6001C9CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB3BD0EF243B41A6001C9CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
+		AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListDataSource.swift; sourceTree = "<group>"; };
+		AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		AB3BD124244028BA001C9CDC /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		AB3BD12824403D04001C9CDC /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		AB3BD12A24403F32001C9CDC /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,48 @@
 		AB3BD0E0243B41A5001C9CDC /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				AB3BD12724403CAB001C9CDC /* Model */,
+				AB3BD12624402C97001C9CDC /* Util */,
+				AB3BD11B243E31DD001C9CDC /* View */,
 				AB3BD0E1243B41A5001C9CDC /* AppDelegate.swift */,
 				AB3BD0E3243B41A5001C9CDC /* SceneDelegate.swift */,
-				AB3BD0E5243B41A5001C9CDC /* ViewController.swift */,
 				AB3BD0E7243B41A5001C9CDC /* Main.storyboard */,
 				AB3BD0EA243B41A6001C9CDC /* Assets.xcassets */,
 				AB3BD0EC243B41A6001C9CDC /* LaunchScreen.storyboard */,
 				AB3BD0EF243B41A6001C9CDC /* Info.plist */,
 			);
 			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		AB3BD11B243E31DD001C9CDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB3BD0E5243B41A5001C9CDC /* ViewController.swift */,
+				AB3BD115243DEB10001C9CDC /* TodoListViewController.swift */,
+				AB3BD122243F0799001C9CDC /* TaskDetailViewController.swift */,
+				AB3BD11E243EDEFE001C9CDC /* TaskCardCell.swift */,
+				AB3BD120243EE3EB001C9CDC /* TodoListDataSource.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB3BD12624402C97001C9CDC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AB3BD124244028BA001C9CDC /* NotificationExtension.swift */,
+				AB3BD12A24403F32001C9CDC /* APIClient.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		AB3BD12724403CAB001C9CDC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB3BD12824403D04001C9CDC /* CardData.swift */,
+				AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */,
+				AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +189,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */,
+				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
+				AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */,
+				AB3BD12B24403F32001C9CDC /* APIClient.swift in Sources */,
+				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
+				AB3BD121243EE3EB001C9CDC /* TodoListDataSource.swift in Sources */,
+				AB3BD12F2441DF40001C9CDC /* CardDetailData.swift in Sources */,
+				AB3BD12924403D04001C9CDC /* CardData.swift in Sources */,
 				AB3BD0E6243B41A5001C9CDC /* ViewController.swift in Sources */,
+				AB3BD12D2441DEDB001C9CDC /* CategoryData.swift in Sources */,
 				AB3BD0E2243B41A5001C9CDC /* AppDelegate.swift in Sources */,
 				AB3BD0E4243B41A5001C9CDC /* SceneDelegate.swift in Sources */,
 			);
