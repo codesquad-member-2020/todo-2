@@ -158,7 +158,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="taskTitleLabel" destination="zg7-7W-j1s" id="oxX-NW-WLT"/>
-                                            <segue destination="1Jt-AI-A28" kind="presentation" id="m8X-6n-w74"/>
+                                            <segue destination="1Jt-AI-A28" kind="presentation" identifier="detailCard" id="m8X-6n-w74"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -189,7 +189,7 @@
         <!--Task Detail View Controller-->
         <scene sceneID="APR-1X-LYc">
             <objects>
-                <viewController id="1Jt-AI-A28" customClass="TaskDetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskDetailViewController" id="1Jt-AI-A28" customClass="TaskDetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gZA-5f-PbR">
                         <rect key="frame" x="0.0" y="0.0" width="367" height="742"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
