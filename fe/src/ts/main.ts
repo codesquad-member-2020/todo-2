@@ -1,7 +1,10 @@
 import "../style/style.scss";
-import { getTodoData } from "./todo/todo";
+import { getTodoData, renderTodo, eventHandler } from "./todo/todo";
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
     const projectId = "test";
-    getTodoData(projectId);
+    getTodoData(projectId).then(data => {
+        renderTodo(data);
+        eventHandler();
+    });
 });
