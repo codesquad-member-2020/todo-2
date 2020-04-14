@@ -20,25 +20,31 @@ class TaskDetailViewController: UIViewController {
     }
     
     var cardDetailData: CardDetailData?
-    var editIndex: Int?
     var editTask: (CardDetailData) -> () = { _ in }
+    var createTask: (CardDetailData) -> () = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDetailView()
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchUploadButton))
         uploadButton.addGestureRecognizer(tapGesture)
     }
     
     private func setUpDetailView() {
-        detailTitle.text = cardDetailData?.title
-        detailContent.text = cardDetailData?.content
+        detailTitle.text = cardDetailData?.title ?? "New Card"
+        detailContent.text = cardDetailData?.content ?? "새로운 카드 입니다."
     }
     
     @objc func touchUploadButton() {
-        cardDetailData?.title = detailTitle.text!
-        cardDetailData?.content = detailContent.text!
-        editTask(cardDetailData!)
+        if cardDetailData == nil {
+            cardDetailData = CardDetailData(cardId: 0, user_name: "iOS", title: detailTitle.text!, content: detailContent.text)
+            createTask(cardDetailData!)
+        } else {
+            cardDetailData?.title = detailTitle.text!
+            cardDetailData?.content = detailContent.text
+            editTask(cardDetailData!)
+        }
         dismiss(animated: true, completion: nil)
     }
 

@@ -11,7 +11,7 @@ import UIKit
 class TodoListDataSource: NSObject, UITableViewDataSource {
     var handler: () -> () = {}
     
-    var cardList: [CardDetailData]? {
+    var cardList: [CardDetailData]? = [] {
         didSet {
             handler()
         }
