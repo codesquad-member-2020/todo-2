@@ -101,6 +101,9 @@
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus" catalog="system"/>
+                                        <connections>
+                                            <action selector="addNewCardButton:" destination="BRG-dn-FqZ" eventType="touchUpInside" id="SBw-je-Spl"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

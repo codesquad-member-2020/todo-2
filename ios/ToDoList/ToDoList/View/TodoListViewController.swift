@@ -14,6 +14,10 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var taskCardTableView: UITableView!
     @IBOutlet weak var columnName: UILabel!
     
+    @IBAction func addNewCardButton(_ sender: Any) {
+        
+    }
+    
     let tableViewDataSource = TodoListDataSource()
     let tableViewDelegate = self
     

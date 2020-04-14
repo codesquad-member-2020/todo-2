@@ -8,6 +8,12 @@
 
 import Foundation
 
+/*
+protocol abc {
+    var data: [CategoryData] {get set}
+}
+ */
+
 struct CardData: Codable {
     var result: Bool
     var data: [CategoryData]
