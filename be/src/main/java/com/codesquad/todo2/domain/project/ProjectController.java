@@ -42,4 +42,16 @@ public class ProjectController {
         return ResponseEntity.badRequest()
                 .body(ResponseBodyWrapper.failed("카드 내용 변경 실패"));
     }
+
+    @DeleteMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
+    public ResponseEntity<ResponseBodyWrapper> deleteCard(@PathVariable long projectId,
+                                                              @PathVariable long categoryId,
+                                                              @PathVariable long cardId) {
+        boolean deleted = projectService.softDeleteCard(projectId, categoryId, cardId);
+        if (deleted) {
+            return ResponseEntity.ok(ResponseBodyWrapper.ok());
+        }
+        return ResponseEntity.badRequest()
+                .body(ResponseBodyWrapper.failed("카드 삭제 실패. 존재하는 카드였을까?"));
+    }
 }

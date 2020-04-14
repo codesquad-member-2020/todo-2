@@ -56,6 +56,16 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
+    public boolean softDeleteCard(long projectId, long categoryId, long cardId) {
+        Project project = findProjectByIdOrHandleNotFound(projectId);
+        Category category = project.getCategoryById(categoryId);
+        Card card = category.getCardById(cardId);
+        card.setDeleted(true);
+
+        projectRepository.save(project);
+        return true; // TODO: handle failure case
+    }
+
     private Project findProjectByIdOrHandleNotFound(Long projectId) {
         Optional<Project> optionalProject = projectRepository.findById(projectId);
         return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
