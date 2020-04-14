@@ -66,7 +66,7 @@ public class ProjectService {
         projectDto.setId(project.getId());
         projectDto.setTitle(project.getTitle());
         List<CategoryDto> categoryDtos = new ArrayList<>();
-        for (Category category : project.getCategories()) {
+        for (Category category : project.getCategoriesExcludingSoftDeleted()) {
             CategoryDto categoryDto = mapCategoryToCategoryDto(category);
             categoryDtos.add(categoryDto);
         }
@@ -79,7 +79,7 @@ public class ProjectService {
         categoryDto.setId(category.getId());
         categoryDto.setTitle(category.getTitle());
         List<CardDto> cardDtos = new ArrayList<>();
-        for (Card card : category.getCards()) {
+        for (Card card : category.getCardsExcludingSoftDeleted()) {
             CardDto cardDto = mapCardToCardDto(card);
             cardDtos.add(cardDto);
         }
