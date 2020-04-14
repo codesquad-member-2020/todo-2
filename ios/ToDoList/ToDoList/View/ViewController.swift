@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func distributeData(notification: Notification) {
+    @objc private func distributeData(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardData] else { return }
         self.cardData = notificationInfo["responseData"]
         
