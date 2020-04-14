@@ -1,10 +1,13 @@
 package com.codesquad.todo2.api;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseBodyWrapper {
     private Boolean result;
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
     private Object data;
     private String errorMessage;
 
