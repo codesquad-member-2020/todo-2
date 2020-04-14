@@ -61,6 +61,7 @@ public class Category {
 
     public Card getCardById(long cardId) {
         return cards.stream()
+                .filter(card -> !card.isDeleted())
                 .filter(card -> card.getId() == cardId)
                 .findFirst()
                 .orElse(null); // TODO: handle not found with orElseThrow
@@ -70,5 +71,27 @@ public class Category {
         return cards.stream()
                 .filter(card -> !card.isDeleted())
                 .collect(Collectors.toList());
+    }
+
+    public Card removeCardById(Long cardId) {
+        Card cardToBeRemoved = getCardById(cardId);
+        boolean deleted = cards.removeIf(card -> card.getId().equals(cardId));
+        if (deleted) {
+            return cardToBeRemoved;
+        }
+        return null;
+    }
+
+    public void addCardNextToCardById(Card card, Long previousCardId) {
+        if (previousCardId.equals(0L)) {
+            cards.add(0, card);
+        }
+        for (int i = 0; i < cards.size(); i++) {
+            Card currentCard = cards.get(i);
+            if (currentCard.getId().equals(previousCardId)) {
+                cards.add(i + 1, card);
+                break;
+            }
+        }
     }
 }
