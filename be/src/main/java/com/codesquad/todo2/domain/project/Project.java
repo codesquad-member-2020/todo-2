@@ -4,6 +4,7 @@ import com.codesquad.todo2.domain.category.Category;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Project {
     @Id
@@ -45,11 +46,15 @@ public class Project {
     }
 
     public Category getCategoryById(long categoryId) {
-        for (Category category : categories) {
-            if (category.getId() == categoryId) {
-                return category;
-            }
-        }
-        return null; // TODO: handle not found
+        return categories.stream()
+                .filter(category -> category.getId() == categoryId)
+                .findFirst()
+                .orElse(null); // TODO: handle not found  with orElseThrow
+    }
+
+    public List<Category> getCategoriesExcludingSoftDeleted() {
+        return categories.stream()
+                .filter(category -> !category.isDeleted())
+                .collect(Collectors.toList());
     }
 }

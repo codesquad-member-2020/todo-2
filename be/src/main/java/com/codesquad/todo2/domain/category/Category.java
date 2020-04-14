@@ -4,6 +4,7 @@ import com.codesquad.todo2.domain.card.Card;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Category {
     @Id
@@ -59,11 +60,15 @@ public class Category {
     }
 
     public Card getCardById(long cardId) {
-        for (Card card : cards) {
-            if (card.getId() == cardId) {
-                return card;
-            }
-        }
-        return null; // TODO: handle not found
+        return cards.stream()
+                .filter(card -> card.getId() == cardId)
+                .findFirst()
+                .orElse(null); // TODO: handle not found with orElseThrow
+    }
+
+    public List<Card> getCardsExcludingSoftDeleted() {
+        return cards.stream()
+                .filter(card -> !card.isDeleted())
+                .collect(Collectors.toList());
     }
 }
