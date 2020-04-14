@@ -15,4 +15,9 @@ public class UserService {
         Optional<String> name = userRepository.findNameById(id);
         return name.orElse(null); // TODO: handle 404 with orElseThrow
     }
+
+    public Long findIdByName(String name) {
+        Optional<Long> id = userRepository.findIdByName(name);
+        return id.orElse(null); // TODO: handle 404 with orElseThrow
+    }
 }
