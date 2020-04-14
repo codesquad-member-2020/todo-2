@@ -2,6 +2,7 @@ package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.api.ResponseBodyWrapper;
 import com.codesquad.todo2.domain.card.CardId;
+import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,5 +54,17 @@ public class ProjectController {
         }
         return ResponseEntity.badRequest()
                 .body(ResponseBodyWrapper.failed("카드 삭제 실패. 존재하는 카드였을까?"));
+    }
+
+    @PutMapping("/projects/{projectId}/categories/{categoryId}/cards")
+    public ResponseEntity<ResponseBodyWrapper> reorderCard(@PathVariable long projectId,
+                                                           @PathVariable long categoryId,
+                                                           @RequestBody CardIds requestBody) {
+        boolean moved = projectService.reorderCard(projectId, categoryId, requestBody);
+        if (moved) {
+            return ResponseEntity.ok(ResponseBodyWrapper.ok());
+        }
+        return ResponseEntity.badRequest()
+                .body(ResponseBodyWrapper.failed("카드 이동 실패."));
     }
 }
