@@ -3,6 +3,7 @@ package com.codesquad.todo2.domain.project;
 import com.codesquad.todo2.domain.card.Card;
 import com.codesquad.todo2.domain.card.CardDto;
 import com.codesquad.todo2.domain.card.CardId;
+import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import com.codesquad.todo2.domain.category.Category;
 import com.codesquad.todo2.domain.category.CategoryDto;
@@ -61,6 +62,20 @@ public class ProjectService {
         Category category = project.getCategoryById(categoryId);
         Card card = category.getCardById(cardId);
         card.setDeleted(true);
+
+        projectRepository.save(project);
+        return true; // TODO: handle failure case
+    }
+
+    public boolean reorderCard(long projectId, long categoryId, CardIds requestBody) {
+        Project project = findProjectByIdOrHandleNotFound(projectId);
+        Category targetCategory = project.getCategoryById(categoryId);
+        Long cardId = requestBody.getCardId();
+        Long previousCardId = requestBody.getPreviousCardId();
+        Category sourceCategory = findCategoryByCardIdFromProject(project, cardId);
+
+        Card card = sourceCategory.removeCardById(cardId);
+        targetCategory.addCardNextToCardById(card, previousCardId);
 
         projectRepository.save(project);
         return true; // TODO: handle failure case
