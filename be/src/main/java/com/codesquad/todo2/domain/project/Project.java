@@ -43,4 +43,13 @@ public class Project {
                 ", categories=" + categories +
                 '}';
     }
+
+    public Category getCategoryById(long categoryId) {
+        for (Category category : categories) {
+            if (category.getId() == categoryId) {
+                return category;
+            }
+        }
+        return null; // TODO: handle not found
+    }
 }

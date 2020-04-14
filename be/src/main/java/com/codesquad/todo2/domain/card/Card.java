@@ -13,6 +13,14 @@ public class Card {
     private boolean isDeleted;
     private Long user; // many to one key
 
+    public Card(String title, String content, Long user) {
+        this.title = title;
+        this.content = content;
+        timeCreated = LocalDateTime.now();
+        isDeleted = false;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }

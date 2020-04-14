@@ -2,6 +2,8 @@ package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.domain.card.Card;
 import com.codesquad.todo2.domain.card.CardDto;
+import com.codesquad.todo2.domain.card.CardId;
+import com.codesquad.todo2.domain.card.CardTitleContent;
 import com.codesquad.todo2.domain.category.Category;
 import com.codesquad.todo2.domain.category.CategoryDto;
 import com.codesquad.todo2.domain.user.UserService;
@@ -21,10 +23,28 @@ public class ProjectService {
     @Autowired
     private UserService userService;
 
-    public ProjectDto getProjectDtoByProjectId(Long projectId) {
-        Optional<Project> optionalProject = projectRepository.findById(projectId);
-        Project project = optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
+    public ProjectDto getProjectDtoByProjectId(long projectId) {
+        Project project = findProjectByIdOrHandleNotFound(projectId);
         return mapProjectToProjectDto(project);
+    }
+
+    public CardId addCard(long projectId, long categoryId, CardTitleContent requestBody, String userName) {
+        Project project = findProjectByIdOrHandleNotFound(projectId);
+        Category category = project.getCategoryById(categoryId);
+        Long userId = userService.findIdByName(userName);
+        String title = requestBody.getTitle();
+        String content = requestBody.getContent();
+
+        Card card = new Card(title, content, userId);
+        category.addCard(card);
+
+        projectRepository.save(project);
+        return new CardId(card.getId());
+    }
+
+    private Project findProjectByIdOrHandleNotFound(Long projectId) {
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+        return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
     }
 
     private ProjectDto mapProjectToProjectDto(Project project) {
