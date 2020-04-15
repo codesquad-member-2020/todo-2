@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var toDoViewController: TodoListViewController!
     var progressViewController: TodoListViewController!
     var completeViewContrller: TodoListViewController!
@@ -23,6 +23,11 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector (distributeData),
                                                name: .completeLoad,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector (movingCard),
+                                               name: .moveCardToDone,
                                                object: nil)
     }
     
@@ -43,6 +48,14 @@ class ViewController: UIViewController {
         setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.data[0])
         setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.data[1])
         setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.data[2])
+    }
+    
+    @objc private func movingCard(notification: Notification) {
+        guard let notificationInfo = notification.userInfo as? [String: CardDetailData] else { return }
+        let card = notificationInfo["moveCard"]
+        
+        completeViewContrller.tableViewDataSource.cardList?.append(card!)
+        completeViewContrller.taskCardTableView.reloadData()
     }
     
     private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CategoryData) {
