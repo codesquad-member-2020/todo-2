@@ -9,8 +9,8 @@
 import Foundation
 
 struct CardDetailData: Codable {
-    var cardId: Int
-    var user_name: String
+    var id: Int
     var title: String
     var content: String
+    var userName: String
 }

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var completeViewContrller: TodoListViewController!
     
     let apiClient = APIClient()
-    var cardData: CardData!
+    var cardData: CardData.ProjectData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +42,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func distributeData(notification: Notification) {
-        guard let notificationInfo = notification.userInfo as? [String: CardData] else { return }
+        guard let notificationInfo = notification.userInfo as? [String: CardData.ProjectData] else { return }
         self.cardData = notificationInfo["responseData"]
         
-        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.data.ObjectNode.project[0])
-        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.data.ObjectNode.project[1])
-        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.data.ObjectNode.project[2])
+        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.categories[0])
+        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.categories[1])
+        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.categories[2])
     }
     
     @objc private func movingCard(notification: Notification) {

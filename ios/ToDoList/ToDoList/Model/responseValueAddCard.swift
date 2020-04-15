@@ -1,5 +1,5 @@
 //
-//  ObjectNode.swift
+//  responseValueAddCard.swift
 //  ToDoList
 //
 //  Created by 임승혁 on 2020/04/16.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct DataNode: Codable {
-    var project: [CategoryData]
+struct responseValueAddCard {
+    let errorMessage: String?
+    let result: Bool
 }
