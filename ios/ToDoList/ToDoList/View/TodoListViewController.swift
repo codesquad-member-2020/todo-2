@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController, UITableViewDelegate {
+class TodoListViewController: UIViewController {
     
     @IBOutlet weak var cardCount: UILabel!
     @IBOutlet weak var taskCardTableView: UITableView!
@@ -25,7 +25,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     }
     
     let tableViewDataSource = TodoListDataSource()
-    let tableViewDelegate = self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +36,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         tableViewDataSource.handler = {
             self.cardCount.text = String(self.tableViewDataSource.cardList?.count ?? 0 )
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector (contextMenuDeleteRow), name: .deleteRow, object: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,5 +58,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
     private func cardCountLabelSetRadius() {
         cardCount.layer.masksToBounds = true
         cardCount.layer.cornerRadius = cardCount.frame.size.height/2.0
+    }
+    
+    @objc private func contextMenuDeleteRow(notification: Notification) {
+        guard let notificationInfo = notification.userInfo as? [String: IndexPath] else { return }
+        let deleteRow = notificationInfo["deleteRow"]!
+        taskCardTableView.deleteRows(at: [deleteRow], with: .automatic)
     }
 }
