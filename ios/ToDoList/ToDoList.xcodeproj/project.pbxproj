@@ -23,6 +23,7 @@
 		AB3BD12D2441DEDB001C9CDC /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */; };
 		AB3BD12F2441DF40001C9CDC /* CardDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */; };
 		AB3BD13A24460C4E001C9CDC /* TodoListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BD13924460C4E001C9CDC /* TodoListDelegate.swift */; };
+		AB4E45EB2447866A0044B904 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45EA2447866A0044B904 /* ObjectNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailData.swift; sourceTree = "<group>"; };
 		AB3BD13924460C4E001C9CDC /* TodoListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListDelegate.swift; sourceTree = "<group>"; };
+		AB4E45EA2447866A0044B904 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				AB3BD12824403D04001C9CDC /* CardData.swift */,
+				AB4E45EA2447866A0044B904 /* ObjectNode.swift */,
 				AB3BD12C2441DEDB001C9CDC /* CategoryData.swift */,
 				AB3BD12E2441DF40001C9CDC /* CardDetailData.swift */,
 			);
@@ -194,6 +197,7 @@
 			files = (
 				AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */,
 				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
+				AB4E45EB2447866A0044B904 /* ObjectNode.swift in Sources */,
 				AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */,
 				AB3BD12B24403F32001C9CDC /* APIClient.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,

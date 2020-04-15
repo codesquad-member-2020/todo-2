@@ -16,5 +16,9 @@ protocol abc {
 
 struct CardData: Codable {
     var result: Bool
-    var data: [CategoryData]
+    var data: ObjectNode
+    
+    struct ObjectNode: Codable {
+        var ObjectNode: DataNode
+    }
 }
