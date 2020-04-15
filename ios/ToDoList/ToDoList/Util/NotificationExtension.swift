@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     static let deleteRow = NSNotification.Name("deleteRow")
     static let completeLoad = NSNotification.Name("completeLoad")
+    static let moveCardToDone = NSNotification.Name("moveCardToDone")
 }
