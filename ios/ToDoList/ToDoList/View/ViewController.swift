@@ -45,9 +45,9 @@ class ViewController: UIViewController {
         guard let notificationInfo = notification.userInfo as? [String: CardData] else { return }
         self.cardData = notificationInfo["responseData"]
         
-        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.data[0])
-        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.data[1])
-        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.data[2])
+        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.data.ObjectNode.project[0])
+        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.data.ObjectNode.project[1])
+        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.data.ObjectNode.project[2])
     }
     
     @objc private func movingCard(notification: Notification) {
