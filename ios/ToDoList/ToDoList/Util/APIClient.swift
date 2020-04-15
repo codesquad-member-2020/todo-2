@@ -13,7 +13,7 @@ class APIClient {
     var dataTask: URLSessionDataTask?
     
     func requestAllCategoryCard() {
-        guard let url = URL(string: "http://15.164.28.20:8080/mock/projects/1") else { return }
+        guard let url = URL(string: "http://15.164.28.20:8080/projects/1") else { return }
         let request = URLRequest(url: url)
         
         dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
@@ -22,9 +22,18 @@ class APIClient {
             guard let data = data, let responseData = try? JSONDecoder().decode(CardData.self, from: data) else { print("responseDataError"); return; }
             
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .completeLoad, object: nil, userInfo: ["responseData":responseData])
+                NotificationCenter.default.post(name: .completeLoad, object: nil, userInfo: ["responseData":responseData.data.project])
             }
         }
         dataTask!.resume()
+    }
+    
+    func requestAddNewCard(categoryId: Int, title: String, content: String) {
+        guard let url = URL(string: "http://15.164.28.20:8080/mock/projects/1/categories/\(categoryId)/cards") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "content=\(content)&title=\(title)".data(using:String.Encoding.utf8, allowLossyConversion: false)
+        request.httpBody = body
     }
 }
