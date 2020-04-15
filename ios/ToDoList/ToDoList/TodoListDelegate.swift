@@ -14,15 +14,23 @@ extension TodoListViewController: UITableViewDelegate {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             guard let tableViewDataSource = tableView.dataSource as? TodoListDataSource else { return UIMenu(title: "") }
             
-            let moveToDone = UIAction(title: "move to done") { _ in }
+            let moveToDone = UIAction(title: "move to done") { _ in
+                guard let moveCard = tableViewDataSource.cardList?[indexPath.row] else { return }
+                NotificationCenter.default.post(name: .moveCardToDone, object: nil, userInfo: ["moveCard" : moveCard])
+                self.deleteSelfRow(dataSource: tableViewDataSource, indexPath: indexPath)
+            }
             let delete = UIAction(title: "delete", attributes: .destructive) { _ in
-                tableViewDataSource.cardList?.remove(at: indexPath.row)
-                NotificationCenter.default.post(name: .deleteRow, object: self, userInfo: ["deleteRow":indexPath])
+                self.deleteSelfRow(dataSource: tableViewDataSource, indexPath: indexPath)
             }
             let menu = UIMenu(title: "", children: [moveToDone, delete])
             
             return menu
         }
         return configuration
+    }
+    
+    private func deleteSelfRow(dataSource: TodoListDataSource, indexPath: IndexPath) {
+        tableViewDataSource.cardList?.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: .deleteRow, object: self, userInfo: ["deleteRow":indexPath])
     }
 }
