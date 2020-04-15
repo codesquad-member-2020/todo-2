@@ -1,6 +1,5 @@
-import { $, $$ } from "../common/util";
+import { $ } from "../common/util";
 
 export const TARGET = {
     content: $(".content"),
-    cards: $$(".card")
 }
