@@ -68,7 +68,6 @@ class ViewController: UIViewController {
     }
     
     private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CardData.ProjectData?, index: Int) {
-        print(categoryData?.categories[index])
         targetViewController.tableViewDataSource.cardList = categoryData?.categories[index]
         targetViewController.columnId = categoryData?.categories[index].id
         targetViewController.taskCardTableView.reloadData()
