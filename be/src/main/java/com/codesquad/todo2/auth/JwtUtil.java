@@ -15,7 +15,7 @@ public class JwtUtil {
     private static Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
     private UserRepository userRepository;
 
-    public static String createToken(String userId, String userName) {
+    public static String createToken(Long userId, String userName) {
         Map<String, Object> headers = new HashMap<>();
         headers.put("typ", "JWT");
         headers.put("alg", "HS256");

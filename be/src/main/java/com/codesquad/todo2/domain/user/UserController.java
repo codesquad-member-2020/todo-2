@@ -34,7 +34,7 @@ public class UserController {
         if (loginUser.isDifferentPassword(password)) {
             throw new IncorrectInputException(INCORRECT_INPUT_ERROR_MESSAGE);
         }
-        String token = JwtUtil.createToken(loginUser.getName(), loginUser.getPassword());
+        String token = JwtUtil.createToken(loginUser.getId(), loginUser.getName());
         response.setHeader("Authorization", token);
         return ResponseEntity.ok(ResponseBodyWrapper.ok());
     }

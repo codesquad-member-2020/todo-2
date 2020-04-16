@@ -24,8 +24,9 @@ public class ProjectController {
     public ResponseEntity<ResponseBodyWrapper> addCard(@PathVariable long projectId,
                                                        @PathVariable long categoryId,
                                                        @RequestBody CardTitleContent requestBody,
-                                                        @RequestAttribute("userName") String userName) {
-        CardId cardId = projectService.addCard(projectId, categoryId, requestBody, userName);
+                                                       @RequestAttribute("userId") Long userId,
+                                                       @RequestAttribute("name") String name) {
+        CardId cardId = projectService.addCard(projectId, categoryId, requestBody, name);
         return ResponseEntity.ok(ResponseBodyWrapper.ok(cardId));
     }
 
