@@ -9,20 +9,49 @@
 import Foundation
 
 class APIClient {
+    static let apiClient = APIClient()
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
     
     func requestAllCategoryCard() {
-        guard let url = URL(string: "http://15.164.28.20:8080/mock/projects/1") else { return }
-        let request = URLRequest(url: url)
+        guard let url = URL(string: "http://15.164.28.20:8080/projects/1") else { return }
+        var request = URLRequest(url: url)
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         
         dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
             if let error = error { print(error); return }
             
-            guard let data = data, let responseData = try? JSONDecoder().decode(CardData.self, from: data) else { print("responseDataError"); return; }
+            guard let data = data, let responseData = try? JSONDecoder().decode(CardData.self, from: data) else { print("cardDataResponseDataError"); return; }
             
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .completeLoad, object: nil, userInfo: ["responseData":responseData])
+                NotificationCenter.default.post(name: .completeLoad, object: nil, userInfo: ["responseData":responseData.data.project])
+            }
+        }
+        dataTask!.resume()
+    }
+    
+    func requestAddNewCard(categoryId: Int, title: String, content: String) {
+        guard let url = URL(string: "http://15.164.28.20:8080/projects/1/categories/\(categoryId)/cards") else { return }
+        var request = URLRequest(url: url)
+        
+        let param = ["content": content, "title": title]
+        let paramData = try! JSONEncoder().encode(param)
+        
+        request.httpMethod = "POST"
+        request.httpBody = paramData
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
+            if let error = error { print(error); return }
+            
+            guard let data = data, let responseData = try? JSONDecoder().decode(ResponseValueAddCard.self, from: data) else {
+                print("responseDataError"); return; }
+            
+            if responseData.result == false { return }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .reloadData, object: nil, userInfo: nil)
             }
         }
         dataTask!.resume()
