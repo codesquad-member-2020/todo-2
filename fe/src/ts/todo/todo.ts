@@ -19,9 +19,9 @@ export async function getProjectData(projectId: number) {
 export function renderProject(data: Array<IColumn>) {
     data.forEach(columnData => {
         renderColumn(columnData);
-        const target = document.querySelector(`.card-wrap[data-column-id='${columnData.id}']`);
+
         columnData.cards.forEach(cardData => {
-            renderCard(cardData, target);
+            renderCard(cardData, columnData.id);
         })
     });
 }
@@ -41,7 +41,7 @@ function renderColumn(columnData: IColumn) {
         </div>`;
 }
 
-function renderCard(cardData: ICard, target: Element) {
+function renderCard(cardData: ICard, columnId: number) {
     const template =
         `<div class="card" data-card-id="${cardData.id}" draggable="true">
             <div class="card-top">
@@ -51,7 +51,7 @@ function renderCard(cardData: ICard, target: Element) {
             </div>
             <div class="card-writer">Added by ${cardData.userName}</div>
         </div>`;
-    target.insertAdjacentHTML("afterbegin", template);
+    $(`.card-wrap[data-column-id='${columnId}']`).insertAdjacentHTML("afterbegin", template);
 }
 
 export function eventHandler() {
@@ -126,11 +126,11 @@ function addCardDiv(target: HTMLElement) {
             <button class="btn-card-add" data-column-id="${target.dataset.columnId}" disabled="disabled">Add</button>
             <button class="btn-card-cancel">Cancel</button>
         </div>`;
-    $("#add-card-title").addEventListener("keyup", checkAddCardTextArea);
+    $("#add-card-title").addEventListener('input', checkAddCardTextArea);
 }
 
-function checkAddCardTextArea(event: FocusEvent) {
-    if ((<HTMLTextAreaElement>event.target).value === "") {
+function checkAddCardTextArea() {
+    if ($("#add-card-title").value === "") {
         $(".btn-card-add").setAttribute("disabled", "disabled");
     } else {
         $(".btn-card-add").removeAttribute("disabled");
@@ -156,7 +156,13 @@ async function addCard(target: HTMLElement) {
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards`, options);
     const result = await response.json();
-    console.log(result);
+    console.log(result.data.card);
+    if (result.result) {
+        renderCard(result.data.card, parseInt(categoryId));
+        renderColumnTotal(categoryId);
+        $("#add-card-title").value = "";
+        checkAddCardTextArea();
+    }
 }
 
 
