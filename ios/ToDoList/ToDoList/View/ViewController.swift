@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         guard let notificationInfo = notification.userInfo as? [String: CardDetailData] else { return }
         let card = notificationInfo["moveCard"]
         
-        completeViewContrller.tableViewDataSource.cardList?.append(card!)
+        completeViewContrller.tableViewDataSource.cardList?.cards.append(card!)
         completeViewContrller.taskCardTableView.reloadData()
     }
     
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     }
     
     private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CardData.ProjectData?, index: Int) {
-        targetViewController.tableViewDataSource.cardList = categoryData?.categories[index].cards
+        targetViewController.tableViewDataSource.cardList = categoryData?.categories[index]
         targetViewController.columnId = categoryData?.categories[index].id
         targetViewController.taskCardTableView.reloadData()
         targetViewController.columnName.text = categoryData?.categories[index].title

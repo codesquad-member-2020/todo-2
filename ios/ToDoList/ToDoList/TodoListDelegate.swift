@@ -15,7 +15,7 @@ extension TodoListViewController: UITableViewDelegate {
             guard let tableViewDataSource = tableView.dataSource as? TodoListDataSource else { return UIMenu(title: "") }
             
             let moveToDone = UIAction(title: "move to done") { _ in
-                guard let moveCard = tableViewDataSource.cardList?[indexPath.row] else { return }
+                guard let moveCard = tableViewDataSource.cardList?.cards[indexPath.row] else { return }
                 NotificationCenter.default.post(name: .moveCardToDone, object: nil, userInfo: ["moveCard" : moveCard])
                 self.deleteSelfRow(dataSource: tableViewDataSource, indexPath: indexPath)
             }
@@ -30,7 +30,8 @@ extension TodoListViewController: UITableViewDelegate {
     }
     
     private func deleteSelfRow(dataSource: TodoListDataSource, indexPath: IndexPath) {
-        tableViewDataSource.cardList?.remove(at: indexPath.row)
+        APIClient.apiClient.requestDeleteCard(categoryId: dataSource.cardList!.id, cardId: dataSource.cardList!.cards[indexPath.row].id)
+        tableViewDataSource.cardList?.cards.remove(at: indexPath.row)
         NotificationCenter.default.post(name: .deleteRow, object: self, userInfo: ["deleteRow":indexPath])
     }
 }
