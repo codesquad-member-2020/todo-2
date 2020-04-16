@@ -22,7 +22,7 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @GetMapping("/log")
+    @GetMapping("/logs")
     public ResponseEntity<ResponseBodyWrapper> viewLog(@PathVariable long projectId) throws JsonProcessingException {
         List<LogDto> logDtos = logService.mapProjectToLogDtos(projectId);
         LogsDto logsDto = new LogsDto(projectId);
