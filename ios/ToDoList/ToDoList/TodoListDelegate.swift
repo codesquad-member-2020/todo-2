@@ -22,7 +22,12 @@ extension TodoListViewController: UITableViewDelegate {
             let delete = UIAction(title: "delete", attributes: .destructive) { _ in
                 self.deleteSelfRow(dataSource: tableViewDataSource, indexPath: indexPath)
             }
+            
             let menu = UIMenu(title: "", children: [moveToDone, delete])
+            
+            if tableViewDataSource.cardList?.id == 3 {
+                return UIMenu(title: "", children: [delete])
+            }
             
             return menu
         }
