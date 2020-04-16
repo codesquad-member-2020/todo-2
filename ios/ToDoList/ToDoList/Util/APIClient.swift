@@ -104,4 +104,30 @@ class APIClient {
         }
         dataTask!.resume()
     }
+    
+    func requestMoveCardToDone(destCategoryId: Int, cardId: Int, previousCardId: Int) {
+        guard let url = URL(string: "http://15.164.28.20:8080/projects/1/categories/\(destCategoryId)/cards") else { return }
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "PUT"
+        let param = ["cardId": cardId, "previousCardId": previousCardId]
+        let paramData = try! JSONEncoder().encode(param)
+        
+        request.httpBody = paramData
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
+            if let error = error { print(error); return }
+            
+            guard let data = data, let responseData = try? JSONDecoder().decode(ResponseFailureCheck.self, from: data) else {
+                print("responseDataError"); return; }
+            
+            if responseData.result == false { return }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .reloadData, object: nil, userInfo: nil)
+            }
+        }
+        dataTask!.resume()
+    }
 }
