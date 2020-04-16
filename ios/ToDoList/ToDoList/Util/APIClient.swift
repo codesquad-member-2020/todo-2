@@ -146,7 +146,7 @@ class APIClient {
             
             if responseData.result == false { return }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .completeHistoryLoad, object: nil, userInfo: ["historyData":responseData.data.projectLogs.logs])
+                NotificationCenter.default.post(name: .completeHistoryLoad, object: nil, userInfo: ["historyData":responseData.data.projectLogs])
             }
         }
         dataTask!.resume()

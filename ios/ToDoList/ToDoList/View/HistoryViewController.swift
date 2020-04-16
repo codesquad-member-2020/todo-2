@@ -9,13 +9,15 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
+    @IBOutlet weak var historyTableView: UITableView!
     
-    var logData: [LogDetailInfo]? = []
+    let dataSource = HistoryViewDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         APIClient.apiClient.requestHistory()
         
+        historyTableView.dataSource = dataSource
         NotificationCenter.default.addObserver(self,
                                                selector: #selector (allocateData),
                                                name: .completeHistoryLoad,
@@ -24,8 +26,9 @@ class HistoryViewController: UIViewController {
     }
     
     @objc private func allocateData(notification: Notification) {
-        guard let notificationInfo = notification.userInfo as? [String: [LogDetailInfo]] else { return }
-        self.logData = notificationInfo["historyData"]
+        guard let notificationInfo = notification.userInfo as? [String: LogData.LogDetailData] else { return }
+        dataSource.logData = notificationInfo["historyData"]
+        historyTableView.reloadData()
     }
     
 }
