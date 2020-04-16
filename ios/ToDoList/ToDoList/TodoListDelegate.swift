@@ -30,6 +30,7 @@ extension TodoListViewController: UITableViewDelegate {
     }
     
     private func deleteSelfRow(dataSource: TodoListDataSource, indexPath: IndexPath) {
+        APIClient.apiClient.requestDeleteCard(categoryId: dataSource.cardList!.id, cardId: dataSource.cardList!.cards[indexPath.row].id)
         tableViewDataSource.cardList?.cards.remove(at: indexPath.row)
         NotificationCenter.default.post(name: .deleteRow, object: self, userInfo: ["deleteRow":indexPath])
     }

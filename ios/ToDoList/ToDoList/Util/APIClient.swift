@@ -71,6 +71,10 @@ class APIClient {
                 print("responseDataError"); return; }
             
             if responseData.result == false { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                NotificationCenter.default.post(name: .reloadData, object: self, userInfo: nil)
+            }
         }
         dataTask!.resume()
     }

@@ -33,9 +33,6 @@ class TodoListDataSource: NSObject, UITableViewDataSource {
             APIClient.apiClient.requestDeleteCard(categoryId: cardList!.id, cardId: cardList!.cards[indexPath.row].id)
             self.cardList?.cards.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                NotificationCenter.default.post(name: .reloadData, object: self, userInfo: nil)
-            }
         }
     }
 }
