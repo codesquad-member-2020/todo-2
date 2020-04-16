@@ -31,7 +31,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
                                 <items>
                                     <navigationItem id="04l-II-J9b">
-                                        <barButtonItem key="rightBarButtonItem" title="Menu" id="CE4-Zn-sK2"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Menu" id="CE4-Zn-sK2">
+                                            <connections>
+                                                <segue destination="91g-WP-UNF" kind="popoverPresentation" popoverAnchorBarButtonItem="CE4-Zn-sK2" id="JXs-es-7da">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -66,6 +72,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138.69346733668343" y="137.41007194244605"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Ikp-kB-pHo">
+            <objects>
+                <tableViewController id="91g-WP-UNF" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zFc-pD-wET">
+                        <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="UqU-oG-HcC">
+                                <rect key="frame" x="0.0" y="28" width="388" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UqU-oG-HcC" id="Hre-OC-P8J">
+                                    <rect key="frame" x="13" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="91g-WP-UNF" id="Ul7-dX-zhu"/>
+                            <outlet property="delegate" destination="91g-WP-UNF" id="COu-Q9-KAM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="LsZ-aO-lHE"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THZ-Cw-WHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="-165"/>
         </scene>
         <!--Todo List View Controller-->
         <scene sceneID="0aQ-ix-fph">
