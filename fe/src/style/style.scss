@@ -12,6 +12,7 @@ body, button, input, select, table, textarea {
     font-family: Dotum, "돋움", Helvetica, sans-serif;
     font-size: 12px;
     -webkit-text-size-adjust: none;
+    box-sizing: border-box;
 }
 
 button, input, select, textarea {
@@ -52,6 +53,10 @@ button, input, select, textarea {
     grid-auto-columns: 274px;
     grid-auto-flow: column;
     grid-gap: 15px;
+}
+
+.column-list {
+    height: 100vh;
 }
 
 .column {
@@ -121,6 +126,47 @@ button, input, select, textarea {
     margin-left: 25px;
 }
 
+.add-card-textarea > textarea {
+    width: 254px;
+    height: 60px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 2px;
+    border: 1px solid #d8dbdd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.add-card-btn-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-card-btn-wrap > button {
+    width: 125px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #d8dbdd;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn-card-add[disabled] {
+    color: #ffffff;
+    background-color: #A9ACAE;
+}
+
+.btn-card-add {
+    color: #ffffff;
+    background-color: #31c553;
+}
+
+
+// .btn-card-cancel {
+//     background-color: #F6F8FA;
+//     border: 1px solid #d8dbdd;
+//     color: rgb(140, 148, 151);
+// }
 
 // .column-add {
 //  background-color:#EAECF0;

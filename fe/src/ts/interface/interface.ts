@@ -1,12 +1,12 @@
-export interface ICard {
-    cardId: number,
-    title: string,
-    content: string,
-    user_name: string
-}
-
 export interface IColumn {
-    category_id: number,
+    id: number,
     title: string,
     cards: Array<ICard>
+}
+
+export interface ICard {
+    id: number,
+    title: string,
+    content: string,
+    userName: string
 }
