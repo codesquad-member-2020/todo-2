@@ -58,9 +58,14 @@ class ViewController: UIViewController {
     @objc private func movingCard(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardDetailData] else { return }
         let card = notificationInfo["moveCard"]
+        var doneCardList = completeViewContrller.tableViewDataSource.cardList?.cards
+        var lastIndex = 0
         
-        completeViewContrller.tableViewDataSource.cardList?.cards.append(card!)
-        completeViewContrller.taskCardTableView.reloadData()
+        doneCardList?.append(card!)
+        if doneCardList?.count != 0 {
+            lastIndex = doneCardList!.count - 1
+        }
+        APIClient.apiClient.requestMoveCardToDone(destCategoryId: completeViewContrller.columnId!, cardId: card!.id, previousCardId: lastIndex)
     }
     
     @objc private func reloadAllData() {
