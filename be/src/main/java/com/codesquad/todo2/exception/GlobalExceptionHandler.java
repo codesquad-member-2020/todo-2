@@ -2,7 +2,6 @@ package com.codesquad.todo2.exception;
 
 import com.codesquad.todo2.api.ResponseBodyWrapper;
 import io.jsonwebtoken.security.SignatureException;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
