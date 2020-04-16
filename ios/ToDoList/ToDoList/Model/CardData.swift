@@ -9,9 +9,9 @@
 import Foundation
 
 /*
-protocol abc {
-    var data: [CategoryData] {get set}
-}
+ protocol abc {
+ var data: [CategoryData] {get set}
+ }
  */
 
 struct CardData: Codable {
@@ -23,8 +23,8 @@ struct CardData: Codable {
     }
     
     struct ProjectData: Codable {
-               var id: Int
-               var title: String
-               var categories: [CategoryData]
-           }
+        var id: Int
+        var title: String
+        var categories: [CategoryData]
+    }
 }

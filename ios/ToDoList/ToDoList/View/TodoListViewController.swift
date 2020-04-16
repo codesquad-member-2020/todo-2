@@ -20,11 +20,12 @@ class TodoListViewController: UIViewController {
         
         addNewCardView.createTask = {
             self.tableViewDataSource.cardList?.append($0)
-            self.taskCardTableView.reloadData()
+            APIClient.apiClient.requestAddNewCard(categoryId: self.columnId!, title: $0.title, content: $0.content!)
         }
     }
     
     let tableViewDataSource = TodoListDataSource()
+    var columnId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
