@@ -23,10 +23,8 @@ public class ProjectController {
     @PostMapping("/projects/{projectId}/categories/{categoryId}/cards")
     public ResponseEntity<ResponseBodyWrapper> addCard(@PathVariable long projectId,
                                                        @PathVariable long categoryId,
-                                                       @RequestBody CardTitleContent requestBody) {
-                                                       // @RequestAttribute("userName") String userName) {
-                                                       // @RequestAttribute("userId") long userId) ?!?!?!?!
-        String userName = "scott"; // TODO: replace with @RequestAttribute when interceptor is implemented
+                                                       @RequestBody CardTitleContent requestBody,
+                                                        @RequestAttribute("userName") String userName) {
         CardId cardId = projectService.addCard(projectId, categoryId, requestBody, userName);
         return ResponseEntity.ok(ResponseBodyWrapper.ok(cardId));
     }

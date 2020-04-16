@@ -28,4 +28,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ResponseBodyWrapper.failed(e.getMessage()));
     }
+
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<ResponseBodyWrapper> handlerTokenNotFoundException(TokenNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ResponseBodyWrapper.failed(e.getMessage()));
+    }
+
 }

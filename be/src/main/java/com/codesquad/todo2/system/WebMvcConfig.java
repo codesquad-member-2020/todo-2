@@ -29,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor())
-                .addPathPatterns("/**")
+                .addPathPatterns("/projects/**")
                 .excludePathPatterns(EXCLUDE_PATHS);
     }
 

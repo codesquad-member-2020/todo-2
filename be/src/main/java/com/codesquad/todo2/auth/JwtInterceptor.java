@@ -1,5 +1,6 @@
 package com.codesquad.todo2.auth;
 
+import com.codesquad.todo2.exception.TokenNotFoundException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.debug("[*] preHandle -------------------------------------");
         String jwt = request.getHeader("Authorization");
 
         if (jwt != null) {
@@ -31,7 +33,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
             return true;
         }
-        return false;
+        throw new TokenNotFoundException("토큰값이 존재하지 않습니다.");
     }
 
 }
