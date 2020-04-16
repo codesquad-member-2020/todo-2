@@ -1,14 +1,16 @@
 import { $ } from "../common/util";
 import { IColumn, ICard } from "../interface/interface";
 
-export async function getProjectData(projectId: number) {
+export async function getProjectData() {
+    const projectId = localStorage.getItem("projectId");
+    const token = localStorage.getItem("token");
     const options = {
         method: "GET",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
+            Authorization: token
         }
     };
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}`, options);
@@ -19,7 +21,6 @@ export async function getProjectData(projectId: number) {
 export function renderProject(data: Array<IColumn>) {
     data.forEach(columnData => {
         renderColumn(columnData);
-
         columnData.cards.forEach(cardData => {
             renderCard(cardData, columnData.id);
         })
@@ -46,7 +47,7 @@ function renderCard(cardData: ICard, columnId: number) {
         `<div class="card" data-card-id="${cardData.id}" draggable="true">
             <div class="card-top">
                 <i class="material-icons card-list">list_alt</i>
-                <div class="card-title">${cardData.title}</div>
+                <div class="card-title" data-card-id="${cardData.id}">${cardData.title}</div>
                 <i class="material-icons card-delete" data-card-id="${cardData.id}">close</i>
             </div>
             <div class="card-writer">Added by ${cardData.userName}</div>
@@ -56,6 +57,9 @@ function renderCard(cardData: ICard, columnId: number) {
 
 export function eventHandler() {
     $(".content").addEventListener("click", clickEventDivider);
+    $(".content").addEventListener("dblclick", showModal);
+    $("#edit-card-title").addEventListener("input", checkEditCardTextArea);
+    $(".edit-card-save").addEventListener("click", editCard);
 }
 
 function clickEventDivider(event: MouseEvent) {
@@ -71,7 +75,8 @@ function deleteCardConfirm(target: HTMLElement) {
 }
 
 async function deleteCard(target: HTMLElement) {
-    const projectId = 1; // 아직 JWT 토큰 구현 안 돼서 하드 코딩
+    const projectId = localStorage.getItem("projectId");
+    const token = localStorage.getItem("token");
     const categoryId = (<HTMLElement>target.closest(".column")).dataset.columnId;
     const cardId = target.dataset.cardId;
     const options = {
@@ -80,7 +85,7 @@ async function deleteCard(target: HTMLElement) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
+            Authorization: token
         }
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards/${cardId}`, options);
@@ -138,7 +143,8 @@ function checkAddCardTextArea() {
 }
 
 async function addCard(target: HTMLElement) {
-    const projectId = 1; // 아직 JWT 토큰 구현 안 돼서 하드 코딩
+    const projectId = localStorage.getItem("projectId");
+    const token = localStorage.getItem("token");
     const categoryId = target.dataset.columnId;
     const title = (<HTMLTextAreaElement>$("#add-card-title")).value;
     const options = {
@@ -147,7 +153,7 @@ async function addCard(target: HTMLElement) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
+            Authorization: token
         },
         body: JSON.stringify({
             title: title,
@@ -156,7 +162,6 @@ async function addCard(target: HTMLElement) {
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards`, options);
     const result = await response.json();
-    console.log(result.data.card);
     if (result.result) {
         renderCard(result.data.card, parseInt(categoryId));
         renderColumnTotal(categoryId);
@@ -164,6 +169,67 @@ async function addCard(target: HTMLElement) {
         checkAddCardTextArea();
     }
 }
+
+function showModal(event: MouseEvent) {
+    if (!(<HTMLElement>event.target).className.includes("card-title")) return;
+    const title = (<HTMLElement>event.target).innerText;
+    const cardId = (<HTMLElement>event.target).dataset.cardId;
+    const columnId = (<HTMLElement>(<Element>event.target).closest(".column")).dataset.columnId;
+    $("#edit-card-title").value = title;
+    $("#edit-card-title").dataset.cardId = cardId;
+    $("#edit-card-title").dataset.columnId = columnId;
+    toggleModal();
+    $(".edit-card-close").addEventListener("click", toggleModal);
+}
+
+function toggleModal() {
+    $(".edit-card-modal").classList.toggle("show-modal");
+}
+
+function checkEditCardTextArea() {
+    if ($("#edit-card-title").value === "") {
+        $(".edit-card-save").setAttribute("disabled", "disabled");
+    } else {
+        $(".edit-card-save").removeAttribute("disabled");
+    }
+}
+
+async function editCard() {
+    console.log("edit");
+    const token = localStorage.getItem("token");
+    const projectId = localStorage.getItem("projectId");
+    const categoryId = $("#edit-card-title").dataset.columnId;
+    const cardId = $("#edit-card-title").dataset.cardId;
+    const title = (<HTMLTextAreaElement>$("#edit-card-title")).value;
+    console.log(projectId, categoryId, cardId, title);
+    const options = {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: token
+        },
+        body: JSON.stringify({
+            title: title,
+            content: ""
+        })
+    }
+    const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards/${cardId}`, options);
+    const result = await response.json();
+    if (result) {
+        toggleModal();
+        $(`.card-title[data-card-id="${cardId}"`).innerText = title;
+    }
+}
+
+// const editModalClose = $(".edit-card-close");
+// editModalClose.addEventListener("click", closeModal);
+
+// function closeModal() {
+//     const modal = $(".edit-card-modal");
+//     modal.classList.toggle("show-edit-card-modal");
+// }
 
 
 

@@ -23,6 +23,10 @@ button, input, select, textarea {
     appearance: none;
 }
 
+textarea {
+    resize: vertical;
+}
+
 .container {
     display: grid;
     grid-template-rows: max-content auto;
@@ -134,7 +138,6 @@ button, input, select, textarea {
     margin-bottom: 2px;
     border: 1px solid #d8dbdd;
     border-radius: 5px;
-    resize: vertical;
 }
 
 .add-card-btn-wrap {
@@ -161,12 +164,82 @@ button, input, select, textarea {
     background-color: #31c553;
 }
 
+.edit-card-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 50;
+    top: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    visibility: hidden;
+}
 
-// .btn-card-cancel {
-//     background-color: #F6F8FA;
-//     border: 1px solid #d8dbdd;
-//     color: rgb(140, 148, 151);
-// }
+.edit-card-content {
+    position: absolute;
+    background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
+.edit-card-top {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: #F7F8FA;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+}
+
+.edit-card-close {
+    margin-right: 15px;
+}
+
+.edit-card-middle {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px 0px 15px;
+    font-weight: bolder;
+}
+
+.edit-card-title-label {
+    padding-bottom: 10px;
+}
+
+#edit-card-title {
+    width: 460px;
+    height: 250px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #d8dbdd;
+    border-radius: 5px;
+}
+
+.edit-card-bottom {
+    padding: 15px;
+}
+
+.edit-card-save {
+    color: #ffffff;
+    background-color: #31c553;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #d8dbdd;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.edit-card-save[disabled] {
+    background-color: #A9ACAE;
+}
+
+.show-modal {
+    visibility: visible;
+}
 
 // .column-add {
 //  background-color:#EAECF0;
@@ -177,23 +250,5 @@ button, input, select, textarea {
 //  border-radius: 5px;
 //  font-size: 16px;
 // }
-// .btn-add-white-img{
-//     /* margin-top: 5px; */
-//     width: 20px;
-//     height: 20px;
-//     margin-top: 3px;
-// }
 
 
-// .btn-add {
-//     width: 18px;
-//     height: 18px;
-// }
-// .btn-add-img{
-//     width: 18px;
-// }
-
-// .add-card-title > textarea{
-//     width: 97.5%;
-//     height: 50px;
-// }
