@@ -2,7 +2,6 @@ package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.domain.card.Card;
 import com.codesquad.todo2.domain.card.CardDto;
-import com.codesquad.todo2.domain.card.CardId;
 import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import com.codesquad.todo2.domain.category.Category;
@@ -29,10 +28,9 @@ public class ProjectService {
         return mapProjectToProjectDto(project);
     }
 
-    public CardId addCard(long projectId, long categoryId, CardTitleContent requestBody, String userName) {
+    public CardDto addCard(long projectId, long categoryId, CardTitleContent requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
-        Long userId = userService.findIdByName(userName);
         String title = requestBody.getTitle();
         String content = requestBody.getContent();
 
@@ -40,7 +38,7 @@ public class ProjectService {
         category.addCard(card);
 
         projectRepository.save(project);
-        return new CardId(card.getId());
+	return mapCardToCardDto(card);
     }
 
     public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody) {

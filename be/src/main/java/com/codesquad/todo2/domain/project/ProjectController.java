@@ -1,7 +1,7 @@
 package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.api.ResponseBodyWrapper;
-import com.codesquad.todo2.domain.card.CardId;
+import com.codesquad.todo2.domain.card.CardDto;
 import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,9 @@ public class ProjectController {
     public ResponseEntity<ResponseBodyWrapper> addCard(@PathVariable long projectId,
                                                        @PathVariable long categoryId,
                                                        @RequestBody CardTitleContent requestBody,
-                                                       @RequestAttribute("userId") Long userId,
-                                                       @RequestAttribute("name") String name) {
-        CardId cardId = projectService.addCard(projectId, categoryId, requestBody, name);
-        return ResponseEntity.ok(ResponseBodyWrapper.ok(cardId));
+                                                       @RequestAttribute("userId") Long userId) {
+        CardDto cardDto = projectService.addCard(projectId, categoryId, requestBody, userId);
+        return ResponseEntity.ok(ResponseBodyWrapper.ok(cardDto));
     }
 
     @PutMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
