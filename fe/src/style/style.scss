@@ -60,7 +60,7 @@ textarea {
 }
 
 .column-list {
-    height: 100vh;
+    height: 100%;
 }
 
 .column {
@@ -241,14 +241,71 @@ textarea {
     visibility: visible;
 }
 
-// .column-add {
-//  background-color:#EAECF0;
-//  color: #4B5762; 
-//  height: 35px; 
-//  width: 272px;
-//  padding: 6px;
-//  border-radius: 5px;
-//  font-size: 16px;
-// }
+.logs {
+    height: 100vh;
+    display: none;
+    font-size: 14px;
+    overflow: scroll;
+}
 
+.logs.active {
+    width: 400px;
+    color: #000000;
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 
+.logs-menu-wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    background-color: #F7F8FA;
+    line-height: 15px;
+    border-bottom: 1px solid #C3C5C7;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.logs-menu {
+    display: flex;
+    line-height: 18px;
+}
+
+.logs-menu > div {
+    padding-left: 5px;
+}
+
+.menu-close {
+    margin-right: 5px;
+}
+
+.activity {
+    height: 25px;
+    background-color: #F7F8FA;
+    line-height: 18px;
+    border-bottom: 1px solid rgb(195, 197, 199);
+    display: flex;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.activity > div {
+    padding-left: 5px;
+}
+
+.activity-wrap > ul > li {
+    list-style: none;
+    color: #000000;
+    height: 40px;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.activity-wrap > ul > li > span {
+    color: #146FD8;
+    font-weight: bolder;
+}

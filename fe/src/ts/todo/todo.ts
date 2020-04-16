@@ -1,5 +1,5 @@
 import { $ } from "../common/util";
-import { IColumn, ICard } from "../interface/interface";
+import { IColumn, ICard, ILogs } from "../interface/interface";
 
 export async function getProjectData() {
     const projectId = localStorage.getItem("projectId");
@@ -60,6 +60,8 @@ export function eventHandler() {
     $(".content").addEventListener("dblclick", showModal);
     $("#edit-card-title").addEventListener("input", checkEditCardTextArea);
     $(".edit-card-save").addEventListener("click", editCard);
+    $(".menu").addEventListener("click", getLogsData);
+    $(".menu-close").addEventListener("click", toggleMenu);
 }
 
 function clickEventDivider(event: MouseEvent) {
@@ -195,13 +197,11 @@ function checkEditCardTextArea() {
 }
 
 async function editCard() {
-    console.log("edit");
     const token = localStorage.getItem("token");
     const projectId = localStorage.getItem("projectId");
     const categoryId = $("#edit-card-title").dataset.columnId;
     const cardId = $("#edit-card-title").dataset.cardId;
     const title = (<HTMLTextAreaElement>$("#edit-card-title")).value;
-    console.log(projectId, categoryId, cardId, title);
     const options = {
         method: "PUT",
         headers: {
@@ -222,6 +222,82 @@ async function editCard() {
         $(`.card-title[data-card-id="${cardId}"`).innerText = title;
     }
 }
+
+async function getLogsData() {
+
+    const token = localStorage.getItem("token");
+    const projectId = localStorage.getItem("projectId");
+    const options = {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: token
+        }
+    }
+    const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/logs`, options);
+    const result = await response.json();
+    renderLogs(result.data.projectLogs.logs);
+}
+
+function renderLogs(data: Array<ILogs>) {
+    $(".activity-wrap > ul").innerHTML = "";
+    data.forEach(data => {
+        console.log(data);
+        const template =
+            `<li>
+                <div class='logs-text'>
+                    <span class="logs-user">@${data.userName}</span>
+                     ${data.action}
+                    <span class="logs-card-title">${data.cardTitle}</span>
+                    ${logActionTemplate(data)}
+                </div>
+                <div class="logs-time">${data.timeLogged}</div>
+            </li>`;
+        $(".activity-wrap > ul").insertAdjacentHTML("afterbegin", template);
+    });
+    toggleMenu();
+}
+
+function toggleMenu() {
+    $(".logs").classList.toggle("active");
+}
+
+function logActionTemplate(data: ILogs) {
+    if (data.action === "added") {
+        return ` to <span class="logs-category">${data.dstCategory}</span>`;
+    } else if (data.action === "removed") {
+        return ` from <span class="logs-category">${data.srcCategory}</span>`;
+    } else if (data.action === "updated") {
+        return ``;
+    } else if (data.action === "moved") {
+        return ` from <span class="logs-category">${data.srcCategory}</span> to <span class="logs-category">${data.dstCategory}</span>`;
+    }
+}
+
+// function timeTemplate(data: ILogs) {
+//     const today = new Date();
+//     const timeValue = new Date(value);
+
+//     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+//     if (betweenTime < 1) return '방금전';
+//     if (betweenTime < 60) {
+//         return `${betweenTime}분전`;
+//     }
+
+//     const betweenTimeHour = Math.floor(betweenTime / 60);
+//     if (betweenTimeHour < 24) {
+//         return `${betweenTimeHour}시간전`;
+//     }
+
+//     const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+//     if (betweenTimeDay < 365) {
+//         return `${betweenTimeDay}일전`;
+//     }
+
+//     return `${Math.floor(betweenTimeDay / 365)}년전`;
+// }
 
 // const editModalClose = $(".edit-card-close");
 // editModalClose.addEventListener("click", closeModal);

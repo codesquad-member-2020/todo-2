@@ -10,3 +10,14 @@ export interface ICard {
     content: string,
     userName: string
 }
+
+export interface ILogs {
+    action: string,
+    card: number,
+    cardTitle: string,
+    dstCategory: string | null,
+    srcCategory: string | null,
+    timeLogged: string,
+    user: number,
+    userName: string
+}
