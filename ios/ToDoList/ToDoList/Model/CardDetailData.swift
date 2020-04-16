@@ -11,6 +11,6 @@ import Foundation
 struct CardDetailData: Codable {
     var id: Int
     var title: String
-    var content: String
+    var content: String?
     var userName: String
 }

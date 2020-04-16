@@ -14,12 +14,12 @@ class ViewController: UIViewController {
     var progressViewController: TodoListViewController!
     var completeViewContrller: TodoListViewController!
     
-    let apiClient = APIClient()
-    var cardData: CardData.ProjectData!
+    var cardData: CardData.ProjectData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        apiClient.requestAllCategoryCard()
+        APIClient.apiClient.requestAllCategoryCard()
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector (distributeData),
                                                name: .completeLoad,
@@ -28,6 +28,11 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector (movingCard),
                                                name: .moveCardToDone,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector (reloadAllData),
+                                               name: .reloadData,
                                                object: nil)
     }
     
@@ -45,9 +50,9 @@ class ViewController: UIViewController {
         guard let notificationInfo = notification.userInfo as? [String: CardData.ProjectData] else { return }
         self.cardData = notificationInfo["responseData"]
         
-        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData.categories[0])
-        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData.categories[1])
-        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData.categories[2])
+        setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData, index: 0)
+        setModelAtViewController(targetViewController: progressViewController, categoryData: cardData, index: 1)
+        setModelAtViewController(targetViewController: completeViewContrller, categoryData: cardData, index: 2)
     }
     
     @objc private func movingCard(notification: Notification) {
@@ -58,10 +63,15 @@ class ViewController: UIViewController {
         completeViewContrller.taskCardTableView.reloadData()
     }
     
-    private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CategoryData) {
-        targetViewController.tableViewDataSource.cardList = categoryData.cards
+    @objc private func reloadAllData() {
+        APIClient.apiClient.requestAllCategoryCard()
+    }
+    
+    private func setModelAtViewController(targetViewController: TodoListViewController, categoryData: CardData.ProjectData?, index: Int) {
+        targetViewController.tableViewDataSource.cardList = categoryData?.categories[index].cards
+        targetViewController.columnId = categoryData?.categories[index].id
         targetViewController.taskCardTableView.reloadData()
-        targetViewController.columnName.text = categoryData.title
+        targetViewController.columnName.text = categoryData?.categories[index].title
     }
     
 }
