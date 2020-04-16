@@ -8,6 +8,7 @@ export async function getProjectData(projectId: number) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
         }
     };
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}`, options);
@@ -61,6 +62,7 @@ function clickEventDivider(event: MouseEvent) {
     if ((<HTMLElement>event.target).className.includes("column-add")) addCardDiv(<HTMLElement>event.target);
     if ((<HTMLElement>event.target).className.includes("btn-card-add")) addCard(<HTMLElement>event.target);
     if ((<HTMLElement>event.target).className.includes("card-delete")) deleteCardConfirm(<HTMLElement>event.target);
+    if ((<HTMLElement>event.target).className.includes("btn-card-cancel")) deleteCardDiv();
 }
 
 function deleteCardConfirm(target: HTMLElement) {
@@ -78,6 +80,7 @@ async function deleteCard(target: HTMLElement) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
         }
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards/${cardId}`, options);
@@ -98,10 +101,19 @@ function renderColumnTotal(categoryId: string) {
     $(`.column[data-column-id='${categoryId}']`).querySelector(".column-total").innerText = length;
 }
 
+function deleteCardDiv() {
+    $("#add-card-wrap").remove();
+}
+
 function addCardDiv(target: HTMLElement) {
-    if ($("#add-card-wrap")) $("#add-card-wrap").remove();
-    const column = document.querySelector(`.column[data-column-id='${target.dataset.columnId}']`);
-    const cardWrap = document.querySelector(`.card-wrap[data-column-id='${target.dataset.columnId}']`);
+    const column = $(`.column[data-column-id='${target.dataset.columnId}']`);
+    if (column.querySelector("#add-card-wrap")) {
+        deleteCardDiv();
+        return;
+    } else if ($("#add-card-wrap")) {
+        deleteCardDiv();
+    }
+    const cardWrap = $(`.card-wrap[data-column-id='${target.dataset.columnId}']`);
     const div = document.createElement("div");
     div.id = "add-card-wrap";
     column.insertBefore(div, cardWrap);
@@ -135,6 +147,7 @@ async function addCard(target: HTMLElement) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
         },
         body: JSON.stringify({
             title: title,
@@ -143,6 +156,7 @@ async function addCard(target: HTMLElement) {
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards`, options);
     const result = await response.json();
+    console.log(result);
 }
 
 
