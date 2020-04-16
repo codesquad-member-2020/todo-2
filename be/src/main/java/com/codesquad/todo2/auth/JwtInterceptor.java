@@ -29,7 +29,16 @@ public class JwtInterceptor implements HandlerInterceptor {
             String name = claims.get("name", String.class);
             request.setAttribute("name", name);
 
-            log.debug("name : {}", name);
+            String userAgent = request.getHeader("User-Agent");
+
+            if ( userAgent.contains("Mobile") ) { //web, ios
+                userAgent = "iOS";
+            } else {
+                userAgent = "WEB";
+            }
+
+            request.setAttribute("userAgent", userAgent); //web, ios
+            log.debug("name : {}, userAgent : {}", name, userAgent);
 
             return true;
         }
