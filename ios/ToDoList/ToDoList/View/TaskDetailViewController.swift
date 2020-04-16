@@ -38,7 +38,7 @@ class TaskDetailViewController: UIViewController {
     
     @objc func touchUploadButton() {
         if cardDetailData == nil {
-            cardDetailData = CardDetailData(cardId: 0, user_name: "iOS", title: detailTitle.text!, content: detailContent.text)
+            cardDetailData = CardDetailData(id: 0, title: detailTitle.text!, content: detailContent.text, userName: "iOS")
             createTask(cardDetailData!)
         } else {
             cardDetailData?.title = detailTitle.text!
