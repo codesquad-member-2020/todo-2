@@ -1,5 +1,6 @@
 package com.codesquad.todo2.log;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public class LogDto {
     private String srcCategory;
     private String dstCategory;
     private String action;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime timeLogged;
 
     public Long getUser() {
