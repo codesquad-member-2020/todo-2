@@ -52,7 +52,7 @@ class TodoListViewController: UIViewController {
         
         detailView.editTask = {
             self.tableViewDataSource.cardList?.cards[currentRow] = $0
-            self.taskCardTableView.reloadData()
+            APIClient.apiClient.requestEditCard(categoryId: self.columnId!, cardId: $0.id, title: $0.title, content: $0.content!)
         }
     }
     

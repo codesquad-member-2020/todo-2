@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct ResponseValueDeleteCard: Decodable {
+struct ResponseFailureCheck: Decodable {
     let result: Bool
 }
