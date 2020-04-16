@@ -41,7 +41,7 @@ function renderColumn(columnData: IColumn) {
 }
 
 function renderCard(cardData: ICard, target: Element) {
-    target.innerHTML +=
+    const template =
         `<div class="card" data-card-id="${cardData.id}" draggable="true">
             <div class="card-top">
                 <i class="material-icons card-list">list_alt</i>
@@ -50,6 +50,7 @@ function renderCard(cardData: ICard, target: Element) {
             </div>
             <div class="card-writer">Added by ${cardData.userName}</div>
         </div>`;
+    target.insertAdjacentHTML("afterbegin", template);
 }
 
 export function eventHandler() {
@@ -81,13 +82,21 @@ async function deleteCard(target: HTMLElement) {
     }
     const response: Response = await fetch(`http://15.164.28.20:8080/projects/${projectId}/categories/${categoryId}/cards/${cardId}`, options);
     const result = await response.json();
-    if (result) renderDeleteCard(target.dataset.cardId);
+    if (result) {
+        removeCard(target.dataset.cardId);
+        renderColumnTotal(categoryId);
+    }
 }
 
-function renderDeleteCard(cardId: string) {
-    $(`.card[data-card-id='${cardId}']`).remove();
+function removeCard(cardId: string) {
+    const card = $(`.card[data-card-id='${cardId}']`);
+    card.remove();
 }
 
+function renderColumnTotal(categoryId: string) {
+    const length = $(`.card-wrap[data-column-id='${categoryId}']`).childElementCount;
+    $(`.column[data-column-id='${categoryId}']`).querySelector(".column-total").innerText = length;
+}
 
 function addCardDiv(target: HTMLElement) {
     if ($("#add-card-wrap")) $("#add-card-wrap").remove();
@@ -99,13 +108,13 @@ function addCardDiv(target: HTMLElement) {
     $("#add-card-wrap").innerHTML =
         `<div class="add-card-textarea">
             <label for="add-card-title" hidden>Title</label>
-            <textarea name="title" id="add-card-title" placeholder="Enter a note"></textarea>
+            <textarea name="title" id="add-card-title" placeholder="Enter a title for this card..."></textarea>
         </div>
         <div class="add-card-btn-wrap">
             <button class="btn-card-add" data-column-id="${target.dataset.columnId}" disabled="disabled">Add</button>
             <button class="btn-card-cancel">Cancel</button>
         </div>`;
-    $("#add-card-title").addEventListener("blur", checkAddCardTextArea);
+    $("#add-card-title").addEventListener("keyup", checkAddCardTextArea);
 }
 
 function checkAddCardTextArea(event: FocusEvent) {
