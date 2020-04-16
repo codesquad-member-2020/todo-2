@@ -81,7 +81,7 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
-    private Project findProjectByIdOrHandleNotFound(Long projectId) {
+    public Project findProjectByIdOrHandleNotFound(Long projectId) {
         Optional<Project> optionalProject = projectRepository.findById(projectId);
         return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
     }
