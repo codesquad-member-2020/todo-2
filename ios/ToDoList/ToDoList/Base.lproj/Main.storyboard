@@ -192,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="139" y="1004"/>
         </scene>
-        <!--View Controller-->
+        <!--History View Controller-->
         <scene sceneID="olL-Z9-01F">
             <objects>
-                <viewController id="CcK-oS-oKf" sceneMemberID="viewController">
+                <viewController id="CcK-oS-oKf" customClass="HistoryViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcH-dd-oST">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

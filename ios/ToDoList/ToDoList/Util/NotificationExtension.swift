@@ -13,4 +13,5 @@ extension Notification.Name {
     static let completeLoad = NSNotification.Name("completeLoad")
     static let moveCardToDone = NSNotification.Name("moveCardToDone")
     static let reloadData = NSNotification.Name("reloadData")
+    static let completeHistoryLoad = NSNotification.Name("completeHistoryLoad")
 }
