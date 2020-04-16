@@ -224,13 +224,43 @@
                                 <rect key="frame" x="13" y="35" width="375" height="632"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="Ypf-fm-SjK">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="110" id="Ypf-fm-SjK" customClass="HistoryLogCell" customModule="ToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ypf-fm-SjK" id="N6b-Kr-FyE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세로그가 표시됩니다." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQd-bO-epv">
+                                                    <rect key="frame" x="15" y="5" width="345" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="cx2-ff-FbG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간이 표시됩니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKb-QX-gP5">
+                                                    <rect key="frame" x="15" y="55" width="345" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LKb-QX-gP5" firstAttribute="trailing" secondItem="kQd-bO-epv" secondAttribute="trailing" id="0XU-ll-FCX"/>
+                                                <constraint firstItem="kQd-bO-epv" firstAttribute="leading" secondItem="N6b-Kr-FyE" secondAttribute="leading" constant="15" id="3xM-hx-49R"/>
+                                                <constraint firstItem="LKb-QX-gP5" firstAttribute="leading" secondItem="kQd-bO-epv" secondAttribute="leading" id="5jc-eA-TGi"/>
+                                                <constraint firstAttribute="trailing" secondItem="kQd-bO-epv" secondAttribute="trailing" constant="15" id="Ilh-xl-sX3"/>
+                                                <constraint firstItem="LKb-QX-gP5" firstAttribute="top" secondItem="kQd-bO-epv" secondAttribute="bottom" id="JBh-ej-7Kw"/>
+                                                <constraint firstItem="kQd-bO-epv" firstAttribute="top" secondItem="N6b-Kr-FyE" secondAttribute="top" constant="5" id="eDp-38-thp"/>
+                                                <constraint firstAttribute="bottom" secondItem="LKb-QX-gP5" secondAttribute="bottom" constant="30" id="m12-G9-RJi"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailLog" destination="kQd-bO-epv" id="phM-CC-WmN"/>
+                                            <outlet property="timeLine" destination="LKb-QX-gP5" id="RpG-cC-Q5c"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -247,6 +277,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pYW-3A-ecG"/>
                     </view>
+                    <connections>
+                        <outlet property="historyTableView" destination="P6w-bk-BPE" id="Ery-Iy-sM7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quj-xe-BEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
