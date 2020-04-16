@@ -19,7 +19,7 @@ class TodoListViewController: UIViewController {
         self.present(addNewCardView, animated: true)
         
         addNewCardView.createTask = {
-            self.tableViewDataSource.cardList?.append($0)
+            self.tableViewDataSource.cardList?.cards.append($0)
             APIClient.apiClient.requestAddNewCard(categoryId: self.columnId!, title: $0.title, content: $0.content!)
         }
     }
@@ -35,7 +35,7 @@ class TodoListViewController: UIViewController {
         taskCardTableView.dataSource = tableViewDataSource
         
         tableViewDataSource.handler = {
-            self.cardCount.text = String(self.tableViewDataSource.cardList?.count ?? 0 )
+            self.cardCount.text = String(self.tableViewDataSource.cardList?.cards.count ?? 0 )
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector (contextMenuDeleteRow), name: .deleteRow, object: self)
@@ -48,10 +48,10 @@ class TodoListViewController: UIViewController {
         let indexPath = taskCardTableView.indexPath(for: cell)
         let currentRow = (indexPath?.row)!
         
-        detailView.cardDetailData = tableViewDataSource.cardList?[currentRow]
+        detailView.cardDetailData = tableViewDataSource.cardList?.cards[currentRow]
         
         detailView.editTask = {
-            self.tableViewDataSource.cardList?[currentRow] = $0
+            self.tableViewDataSource.cardList?.cards[currentRow] = $0
             self.taskCardTableView.reloadData()
         }
     }
