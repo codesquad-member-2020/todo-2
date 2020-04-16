@@ -67,4 +67,8 @@ public class Project {
                 .filter(category -> !category.isDeleted())
                 .collect(Collectors.toList());
     }
+
+    public void addLog(Log log) {
+        logs.add(log);
+    }
 }

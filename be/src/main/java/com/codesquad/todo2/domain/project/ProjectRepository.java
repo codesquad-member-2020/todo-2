@@ -9,4 +9,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     @Query("SELECT category FROM card WHERE id = :cardId")
     Optional<Long> findCategoryIdByCardId(Long cardId);
+
+    @Query("SELECT title FROM category WHERE id = :categoryId")
+    Optional<String> findCategoryTitleById(Long categoryId);
 }

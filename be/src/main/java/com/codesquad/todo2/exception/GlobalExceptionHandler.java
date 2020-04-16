@@ -16,8 +16,8 @@ public class GlobalExceptionHandler {
                 .body(ResponseBodyWrapper.failed("유효하지 않은 토큰값입니다."));
     }
 
-    @ExceptionHandler(NotFoundUserException.class)
-    public ResponseEntity<ResponseBodyWrapper> handlerNotFoundUserException(NotFoundUserException e) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ResponseBodyWrapper> handlerNotFoundUserException(NotFoundException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ResponseBodyWrapper.failed(e.getMessage()));
     }

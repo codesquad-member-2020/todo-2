@@ -1,13 +1,16 @@
 package com.codesquad.todo2.log;
 
 import com.codesquad.todo2.domain.project.Project;
+import com.codesquad.todo2.domain.project.ProjectRepository;
 import com.codesquad.todo2.domain.project.ProjectService;
 import com.codesquad.todo2.domain.user.UserService;
+import com.codesquad.todo2.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LogService {
@@ -17,6 +20,9 @@ public class LogService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 
     public List<LogDto> mapProjectToLogDtos(long projectId) {
         Project project = projectService.findProjectByIdOrHandleNotFound(projectId);
@@ -36,5 +42,10 @@ public class LogService {
             logDtos.add(logDto);
         }
         return logDtos;
+    }
+
+    public String findCategoryTitleById(Long categoryId) {
+        Optional<String> optionalCategoryTitle = projectRepository.findCategoryTitleById(categoryId);
+        return optionalCategoryTitle.orElseThrow(() -> new NotFoundException("Category not found."));
     }
 }

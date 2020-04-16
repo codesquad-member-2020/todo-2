@@ -15,6 +15,18 @@ public class Log {
     private String action;
     private LocalDateTime timeLogged;
 
+    public Log() {}
+
+    public Log(Long user, Long card, String cardTitle, String srcCategory, String dstCategory, String action) {
+        this.user = user;
+        this.card = card;
+        this.cardTitle = cardTitle;
+        this.srcCategory = srcCategory;
+        this.dstCategory = dstCategory;
+        this.action = action;
+        timeLogged = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }

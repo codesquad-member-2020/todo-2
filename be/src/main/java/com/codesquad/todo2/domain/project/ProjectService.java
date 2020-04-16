@@ -28,6 +28,10 @@ public class ProjectService {
         return mapProjectToProjectDto(project);
     }
 
+    public Project saveProject(Project project) {
+        return projectRepository.save(project);
+    }
+
     public CardDto addCard(long projectId, long categoryId, CardTitleContent requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);

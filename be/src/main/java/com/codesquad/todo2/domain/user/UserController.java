@@ -3,7 +3,7 @@ package com.codesquad.todo2.domain.user;
 import com.codesquad.todo2.auth.JwtUtil;
 import com.codesquad.todo2.api.ResponseBodyWrapper;
 import com.codesquad.todo2.exception.IncorrectInputException;
-import com.codesquad.todo2.exception.NotFoundUserException;
+import com.codesquad.todo2.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class UserController {
         final String NOT_FOUND_USER_ERROR_MESSAGE = "회원정보가 존재하지 않습니다.";
         final String INCORRECT_INPUT_ERROR_MESSAGE = "인증에 실해하였습니다.";
         log.debug("name : {}, password : {}", name, password);
-        User loginUser = userRepository.findByName(name).orElseThrow(() -> new NotFoundUserException(NOT_FOUND_USER_ERROR_MESSAGE));
+        User loginUser = userRepository.findByName(name).orElseThrow(() -> new NotFoundException(NOT_FOUND_USER_ERROR_MESSAGE));
         log.debug(loginUser.toString());
         if (loginUser.isDifferentPassword(password)) {
             throw new IncorrectInputException(INCORRECT_INPUT_ERROR_MESSAGE);
