@@ -1,7 +1,7 @@
 package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.api.ResponseBodyWrapper;
-import com.codesquad.todo2.domain.card.CardId;
+import com.codesquad.todo2.domain.card.CardDto;
 import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +23,19 @@ public class ProjectController {
     @PostMapping("/projects/{projectId}/categories/{categoryId}/cards")
     public ResponseEntity<ResponseBodyWrapper> addCard(@PathVariable long projectId,
                                                        @PathVariable long categoryId,
-                                                       @RequestBody CardTitleContent requestBody) {
-                                                       // @RequestAttribute("userName") String userName) {
-                                                       // @RequestAttribute("userId") long userId) ?!?!?!?!
-        String userName = "scott"; // TODO: replace with @RequestAttribute when interceptor is implemented
-        CardId cardId = projectService.addCard(projectId, categoryId, requestBody, userName);
-        return ResponseEntity.ok(ResponseBodyWrapper.ok(cardId));
+                                                       @RequestBody CardTitleContent requestBody,
+                                                       @RequestAttribute("userId") Long userId) {
+        CardDto cardDto = projectService.addCard(projectId, categoryId, requestBody, userId);
+        return ResponseEntity.ok(ResponseBodyWrapper.ok(cardDto));
     }
 
     @PutMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
     public ResponseEntity<ResponseBodyWrapper> editCard(@PathVariable long projectId,
                                                         @PathVariable long categoryId,
                                                         @PathVariable long cardId,
-                                                        @RequestBody CardTitleContent requestBody) {
-        boolean edited = projectService.editCard(projectId, categoryId, cardId, requestBody);
+                                                        @RequestBody CardTitleContent requestBody,
+                                                        @RequestAttribute("userId") Long userId) {
+        boolean edited = projectService.editCard(projectId, categoryId, cardId, requestBody, userId);
         if (edited) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }
@@ -46,9 +45,10 @@ public class ProjectController {
 
     @DeleteMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
     public ResponseEntity<ResponseBodyWrapper> deleteCard(@PathVariable long projectId,
-                                                              @PathVariable long categoryId,
-                                                              @PathVariable long cardId) {
-        boolean deleted = projectService.softDeleteCard(projectId, categoryId, cardId);
+                                                          @PathVariable long categoryId,
+                                                          @PathVariable long cardId,
+                                                          @RequestAttribute("userId") Long userId) {
+        boolean deleted = projectService.softDeleteCard(projectId, categoryId, cardId, userId);
         if (deleted) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }
@@ -59,8 +59,9 @@ public class ProjectController {
     @PutMapping("/projects/{projectId}/categories/{categoryId}/cards")
     public ResponseEntity<ResponseBodyWrapper> reorderCard(@PathVariable long projectId,
                                                            @PathVariable long categoryId,
-                                                           @RequestBody CardIds requestBody) {
-        boolean moved = projectService.reorderCard(projectId, categoryId, requestBody);
+                                                           @RequestBody CardIds requestBody,
+                                                           @RequestAttribute("userId") Long userId) {
+        boolean moved = projectService.reorderCard(projectId, categoryId, requestBody, userId);
         if (moved) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }

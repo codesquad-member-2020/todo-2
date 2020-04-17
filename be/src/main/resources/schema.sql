@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS card;
+DROP TABLE IF EXISTS log;
 
 CREATE TABLE IF NOT EXISTS user
 (
@@ -37,3 +38,15 @@ CREATE TABLE IF NOT EXISTS card
     category_key INT
 );
 
+CREATE TABLE  IF NOT EXISTS log (
+    id          BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user        BIGINT REFERENCES user(id),
+    card        BIGINT REFERENCES card(id),
+    card_title      VARCHAR(64),
+    src_category    VARCHAR(64),
+    dst_category    VARCHAR(64),
+    action          ENUM('added', 'removed', 'updated', 'moved'),
+    time_logged     DATETIME,
+    project     BIGINT REFERENCES project(id),
+    project_key INT
+);

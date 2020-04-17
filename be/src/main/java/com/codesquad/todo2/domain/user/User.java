@@ -32,6 +32,10 @@ public class User {
         this.password = password;
     }
 
+    public boolean isDifferentPassword(String inputPassword) {
+        return !password.equals(inputPassword);
+    }
+
     @Override
     public String toString() {
         return "User{" +

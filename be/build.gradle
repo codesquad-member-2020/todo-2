@@ -30,6 +30,11 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.10.5'
+	runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.10.5'
+	runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.10.5'
+	compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.5'
+	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
 }
 
 test {

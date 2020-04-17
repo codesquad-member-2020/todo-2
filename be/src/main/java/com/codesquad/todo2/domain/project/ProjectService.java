@@ -2,12 +2,13 @@ package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.domain.card.Card;
 import com.codesquad.todo2.domain.card.CardDto;
-import com.codesquad.todo2.domain.card.CardId;
 import com.codesquad.todo2.domain.card.CardIds;
 import com.codesquad.todo2.domain.card.CardTitleContent;
 import com.codesquad.todo2.domain.category.Category;
 import com.codesquad.todo2.domain.category.CategoryDto;
 import com.codesquad.todo2.domain.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class ProjectService {
+    private static final Logger log = LoggerFactory.getLogger(ProjectService.class);
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -29,10 +31,13 @@ public class ProjectService {
         return mapProjectToProjectDto(project);
     }
 
-    public CardId addCard(long projectId, long categoryId, CardTitleContent requestBody, String userName) {
+    public Project saveProject(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public CardDto addCard(long projectId, long categoryId, CardTitleContent requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
-        Long userId = userService.findIdByName(userName);
         String title = requestBody.getTitle();
         String content = requestBody.getContent();
 
@@ -40,10 +45,10 @@ public class ProjectService {
         category.addCard(card);
 
         projectRepository.save(project);
-        return new CardId(card.getId());
+	return mapCardToCardDto(card);
     }
 
-    public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody) {
+    public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
         String title = requestBody.getTitle();
@@ -57,7 +62,7 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
-    public boolean softDeleteCard(long projectId, long categoryId, long cardId) {
+    public boolean softDeleteCard(long projectId, long categoryId, long cardId, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
         Card card = category.getCardById(cardId);
@@ -67,7 +72,7 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
-    public boolean reorderCard(long projectId, long categoryId, CardIds requestBody) {
+    public boolean reorderCard(long projectId, long categoryId, CardIds requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category targetCategory = project.getCategoryById(categoryId);
         Long cardId = requestBody.getCardId();
@@ -81,12 +86,12 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
-    private Project findProjectByIdOrHandleNotFound(Long projectId) {
+    public Project findProjectByIdOrHandleNotFound(Long projectId) {
         Optional<Project> optionalProject = projectRepository.findById(projectId);
         return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
     }
 
-    private Category findCategoryByCardIdFromProject(Project project, long cardId) {
+    public Category findCategoryByCardIdFromProject(Project project, long cardId) {
         Optional<Long> optionalCategoryId = projectRepository.findCategoryIdByCardId(cardId);
         Long categoryId = optionalCategoryId.orElse(null); // TODO: handle not found with orElseThrow
         return project.getCategoryById(categoryId);

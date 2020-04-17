@@ -1,6 +1,7 @@
 package com.codesquad.todo2.domain.project;
 
 import com.codesquad.todo2.domain.category.Category;
+import com.codesquad.todo2.log.Log;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class Project {
     private Long id;
     private String title;
     private List<Category> categories;
+    private List<Log> logs;
 
     public Long getId() {
         return id;
@@ -36,6 +38,14 @@ public class Project {
         this.categories = categories;
     }
 
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -56,5 +66,9 @@ public class Project {
         return categories.stream()
                 .filter(category -> !category.isDeleted())
                 .collect(Collectors.toList());
+    }
+
+    public void addLog(Log log) {
+        logs.add(log);
     }
 }
