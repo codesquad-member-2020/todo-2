@@ -25,6 +25,7 @@ class TodoListDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCardCell else { return UITableViewCell() }
         
         cell.taskTitleLabel.text = cardList?.cards[indexPath.row].title
+        cell.authorLabel.text = "Author by \(cardList!.cards[indexPath.row].userName)"
         cell.selectionStyle = .none
         return cell
     }

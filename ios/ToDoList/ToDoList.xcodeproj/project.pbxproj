@@ -30,6 +30,8 @@
 		AB4E45F72448EE2C0044B904 /* LogDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45F62448EE2C0044B904 /* LogDetailData.swift */; };
 		AB4E45F92448FC980044B904 /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45F82448FC980044B904 /* HistoryViewDataSource.swift */; };
 		AB4E45FB2448FF070044B904 /* HistoryLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45FA2448FF070044B904 /* HistoryLogCell.swift */; };
+		AB4E45FD244973BF0044B904 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45FC244973BF0044B904 /* DateExtension.swift */; };
+		AB4E45FF24497A6B0044B904 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E45FE24497A6B0044B904 /* DateFormatterExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		AB4E45F62448EE2C0044B904 /* LogDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetailData.swift; sourceTree = "<group>"; };
 		AB4E45F82448FC980044B904 /* HistoryViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewDataSource.swift; sourceTree = "<group>"; };
 		AB4E45FA2448FF070044B904 /* HistoryLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLogCell.swift; sourceTree = "<group>"; };
+		AB4E45FC244973BF0044B904 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		AB4E45FE24497A6B0044B904 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 			children = (
 				AB3BD124244028BA001C9CDC /* NotificationExtension.swift */,
 				AB3BD12A24403F32001C9CDC /* APIClient.swift */,
+				AB4E45FC244973BF0044B904 /* DateExtension.swift */,
+				AB4E45FE24497A6B0044B904 /* DateFormatterExtension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 			files = (
 				AB3BD123243F0799001C9CDC /* TaskDetailViewController.swift in Sources */,
 				AB3BD11F243EDEFE001C9CDC /* TaskCardCell.swift in Sources */,
+				AB4E45FF24497A6B0044B904 /* DateFormatterExtension.swift in Sources */,
 				AB3BD125244028BA001C9CDC /* NotificationExtension.swift in Sources */,
 				AB3BD12B24403F32001C9CDC /* APIClient.swift in Sources */,
 				AB3BD116243DEB10001C9CDC /* TodoListViewController.swift in Sources */,
@@ -229,6 +236,7 @@
 				AB4E45EF2448AD1A0044B904 /* ResponseFailureCheck.swift in Sources */,
 				AB3BD12D2441DEDB001C9CDC /* CategoryData.swift in Sources */,
 				AB4E45FB2448FF070044B904 /* HistoryLogCell.swift in Sources */,
+				AB4E45FD244973BF0044B904 /* DateExtension.swift in Sources */,
 				AB4E45F92448FC980044B904 /* HistoryViewDataSource.swift in Sources */,
 				AB3BD0E2243B41A5001C9CDC /* AppDelegate.swift in Sources */,
 				AB3BD13A24460C4E001C9CDC /* TodoListDelegate.swift in Sources */,

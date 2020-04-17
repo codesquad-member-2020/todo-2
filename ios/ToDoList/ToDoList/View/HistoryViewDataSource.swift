@@ -41,9 +41,7 @@ class HistoryViewDataSource: NSObject, UITableViewDataSource {
         }
         
         cell.decorateLog(title: title, srcCategory: src, dstCategory: dst)
-        
+        cell.timeLine.text = logs![indexPath.row].timeLogged.timeAgoDisplay()
         return cell
     }
-    
-    
 }

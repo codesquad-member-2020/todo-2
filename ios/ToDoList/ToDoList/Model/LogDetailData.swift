@@ -16,5 +16,5 @@ struct LogDetailInfo: Decodable {
     let srcCategory: String?
     let dstCategory: String?
     let action: String
-    let timeLogged: String
+    let timeLogged: Date
 }
