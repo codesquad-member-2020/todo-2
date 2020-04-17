@@ -1,6 +1,8 @@
 package com.codesquad.todo2.log;
 
 import com.codesquad.todo2.domain.card.CardDto;
+import com.codesquad.todo2.domain.card.CardIds;
+import com.codesquad.todo2.domain.category.Category;
 import com.codesquad.todo2.domain.project.Project;
 import com.codesquad.todo2.domain.project.ProjectService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -75,6 +77,30 @@ public class LogAspect {
         project.addLog(log);
         projectService.saveProject(project);
 
+        return returnValue;
+    }
+
+     @Around("execution(* com.codesquad.todo2.domain.project.ProjectService.reorderCard(..))")
+    public Object logReorderCard(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object[] args = joinPoint.getArgs();
+        Long projectId = (Long) args[0];
+        Long dstCategoryId = (Long) args[1];
+        CardIds requestBody = (CardIds) args[2];
+        Long userId = (Long) args[3];
+        Long cardId = requestBody.getCardId();
+        Project project = projectService.findProjectByIdOrHandleNotFound(projectId);
+        Category srcCategory = projectService.findCategoryByCardIdFromProject(project, cardId); //이전 카테고리가 맞을까
+        String sourceCategoryTitle = srcCategory.getTitle();
+        boolean returnValue = (boolean) joinPoint.proceed();
+        String cardTitle = logService.findCardTitleById(cardId);
+        project = projectService.findProjectByIdOrHandleNotFound(projectId);
+        String dstCategoryTitle = logService.findCategoryTitleById(dstCategoryId); //목적지 카테고리가 맞을까
+        if (sourceCategoryTitle.equals(dstCategoryTitle)) {
+            sourceCategoryTitle = null;
+        }
+        Log log = new Log(userId, cardId, cardTitle, sourceCategoryTitle, dstCategoryTitle, "moved");
+        project.addLog(log);
+        projectService.saveProject(project);
         return returnValue;
     }
 }

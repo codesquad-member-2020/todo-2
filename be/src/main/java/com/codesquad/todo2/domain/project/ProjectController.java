@@ -59,8 +59,9 @@ public class ProjectController {
     @PutMapping("/projects/{projectId}/categories/{categoryId}/cards")
     public ResponseEntity<ResponseBodyWrapper> reorderCard(@PathVariable long projectId,
                                                            @PathVariable long categoryId,
-                                                           @RequestBody CardIds requestBody) {
-        boolean moved = projectService.reorderCard(projectId, categoryId, requestBody);
+                                                           @RequestBody CardIds requestBody,
+                                                           @RequestAttribute("userId") Long userId) {
+        boolean moved = projectService.reorderCard(projectId, categoryId, requestBody, userId);
         if (moved) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }

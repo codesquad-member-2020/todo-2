@@ -72,7 +72,7 @@ public class ProjectService {
         return true; // TODO: handle failure case
     }
 
-    public boolean reorderCard(long projectId, long categoryId, CardIds requestBody) {
+    public boolean reorderCard(long projectId, long categoryId, CardIds requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category targetCategory = project.getCategoryById(categoryId);
         Long cardId = requestBody.getCardId();
@@ -91,7 +91,7 @@ public class ProjectService {
         return optionalProject.orElse(null); // TODO: handle 404 with orElseThrow
     }
 
-    private Category findCategoryByCardIdFromProject(Project project, long cardId) {
+    public Category findCategoryByCardIdFromProject(Project project, long cardId) {
         Optional<Long> optionalCategoryId = projectRepository.findCategoryIdByCardId(cardId);
         Long categoryId = optionalCategoryId.orElse(null); // TODO: handle not found with orElseThrow
         return project.getCategoryById(categoryId);
