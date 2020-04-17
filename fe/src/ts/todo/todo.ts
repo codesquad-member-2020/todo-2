@@ -29,7 +29,7 @@ export function renderProject(data: Array<IColumn>) {
 
 function renderColumn(columnData: IColumn) {
     $(".content").innerHTML +=
-        `<div class="column-list">
+        `<div class="column-list" data-column-id="${columnData.id}">
             <div class="column" data-column-id="${columnData.id}">
                 <div class="column-top">
                     <div class="column-total">${columnData.cards.length}</div>
@@ -62,6 +62,9 @@ export function eventHandler() {
     $(".edit-card-save").addEventListener("click", editCard);
     $(".menu").addEventListener("click", getLogsData);
     $(".menu-close").addEventListener("click", toggleMenu);
+    $(".content").addEventListener("dragstart", dragStart);
+    $(".content").addEventListener("dragover", dragOver);
+    $(".content").addEventListener("drop", drop);
 }
 
 function clickEventDivider(event: MouseEvent) {
@@ -224,7 +227,6 @@ async function editCard() {
 }
 
 async function getLogsData() {
-
     const token = localStorage.getItem("token");
     const projectId = localStorage.getItem("projectId");
     const options = {
@@ -244,7 +246,6 @@ async function getLogsData() {
 function renderLogs(data: Array<ILogs>) {
     $(".activity-wrap > ul").innerHTML = "";
     data.forEach(data => {
-        console.log(data);
         const template =
             `<li>
                 <div class='logs-text'>
@@ -276,79 +277,25 @@ function logActionTemplate(data: ILogs) {
     }
 }
 
-// function timeTemplate(data: ILogs) {
-//     const today = new Date();
-//     const timeValue = new Date(value);
+function dragStart(event: DragEvent) {
+    if ((<HTMLElement>event.target).className !== "card") return;
+    const previousCard = ((<HTMLElement>event.target).nextElementSibling === null) ? "0" : (<HTMLElement>(<Element>event.target).nextElementSibling).dataset.cardId;
+    const cards = {
+        target: (<HTMLElement>event.target).dataset.cardId,
+        previous: previousCard
+    }
+    event.dataTransfer.setData("Text/Json", JSON.stringify(cards));
+    event.dataTransfer.effectAllowed = "copy";
+}
 
-//     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-//     if (betweenTime < 1) return '방금전';
-//     if (betweenTime < 60) {
-//         return `${betweenTime}분전`;
-//     }
+function dragOver(event: DragEvent) {
+    event.preventDefault();
+}
 
-//     const betweenTimeHour = Math.floor(betweenTime / 60);
-//     if (betweenTimeHour < 24) {
-//         return `${betweenTimeHour}시간전`;
-//     }
-
-//     const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-//     if (betweenTimeDay < 365) {
-//         return `${betweenTimeDay}일전`;
-//     }
-
-//     return `${Math.floor(betweenTimeDay / 365)}년전`;
-// }
-
-// const editModalClose = $(".edit-card-close");
-// editModalClose.addEventListener("click", closeModal);
-
-// function closeModal() {
-//     const modal = $(".edit-card-modal");
-//     modal.classList.toggle("show-edit-card-modal");
-// }
-
-
-
-// function dragStart(event: DragEvent) {
-//     if ((<Element>event.target).className !== "card") return;
-//     const previousCard = ((<Element>event.target).nextElementSibling === null) ? "card0" : (<Element>event.target).nextElementSibling.id;
-//     const cards = {
-//         target: (<Element>event.target).id,
-//         previous: previousCard
-//     }
-//     event.dataTransfer.setData("text", JSON.stringify(cards));
-//     event.dataTransfer.effectAllowed = "copy";
-// }
-
-// function dragEnd(event: DragEvent) {
-//     event.preventDefault();
-// }
-
-// function dragOver(event: DragEvent) {
-//     event.preventDefault();
-// }
-
-// function drop(event: DragEvent) {
-//     if ((<Element>event.target).className !== "column-list") return;
-//     console.log("drop");
-//     event.preventDefault();
-
-//     const cards = JSON.parse(event.dataTransfer.getData("text"));
-//     console.log(cards);
-//     // const sourceIdParentEl = element.parentElement;
-//     // const targetEl = document.getElementById(event.target.id);
-
-//     // console.log(event);
-//     // event.target.appendChild(document.getElementById(id));
-// }
-
-
-
-// // document.addEventListener("drop", function (event) {
-// //     event.preventDefault();
-// //     if (event.target.className == "droptarget") {
-// //         var data = event.dataTransfer.getData("Text");
-// //         event.target.appendChild(document.getElementById(data));
-// //         document.getElementById("demo").innerHTML = "The p element was dropped";
-// //     }
-// // });
+function drop(event: any) {
+    event.preventDefault();
+    const columnId = (<HTMLElement>(<Element>event.target).closest(".column-list")).dataset.columnId;
+    const cards = event.dataTransfer.getData("Text/Json");
+    const cardId = JSON.parse(cards).target;
+    $(`.card-wrap[data-column-id="${columnId}"]`).appendChild($(`.card[data-card-id="${cardId}"]`));
+}
