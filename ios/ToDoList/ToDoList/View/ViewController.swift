@@ -49,7 +49,6 @@ class ViewController: UIViewController {
     @objc private func distributeData(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardData.ProjectData] else { return }
         self.cardData = notificationInfo["responseData"]
-        print(cardData)
         
         setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData, index: 0)
         setModelAtViewController(targetViewController: progressViewController, categoryData: cardData, index: 1)
