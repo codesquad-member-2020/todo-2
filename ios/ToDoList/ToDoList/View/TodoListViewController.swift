@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListViewController: UIViewController, UITableViewDelegate {
+class TodoListViewController: UIViewController {
     
     @IBOutlet weak var cardCount: UILabel!
     @IBOutlet weak var taskCardTableView: UITableView!
@@ -19,13 +19,13 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         self.present(addNewCardView, animated: true)
         
         addNewCardView.createTask = {
-            self.tableViewDataSource.cardList?.append($0)
-            self.taskCardTableView.reloadData()
+            self.tableViewDataSource.cardList?.cards.append($0)
+            APIClient.apiClient.requestAddNewCard(categoryId: self.columnId!, title: $0.title, content: $0.content!)
         }
     }
     
     let tableViewDataSource = TodoListDataSource()
-    let tableViewDelegate = self
+    var columnId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,10 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         taskCardTableView.dataSource = tableViewDataSource
         
         tableViewDataSource.handler = {
-            self.cardCount.text = String(self.tableViewDataSource.cardList?.count ?? 0 )
+            self.cardCount.text = String(self.tableViewDataSource.cardList?.cards.count ?? 0 )
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector (contextMenuDeleteRow), name: .deleteRow, object: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,16 +48,22 @@ class TodoListViewController: UIViewController, UITableViewDelegate {
         let indexPath = taskCardTableView.indexPath(for: cell)
         let currentRow = (indexPath?.row)!
         
-        detailView.cardDetailData = tableViewDataSource.cardList?[currentRow]
+        detailView.cardDetailData = tableViewDataSource.cardList?.cards[currentRow]
         
         detailView.editTask = {
-            self.tableViewDataSource.cardList?[currentRow] = $0
-            self.taskCardTableView.reloadData()
+            self.tableViewDataSource.cardList?.cards[currentRow] = $0
+            APIClient.apiClient.requestEditCard(categoryId: self.columnId!, cardId: $0.id, title: $0.title, content: $0.content!)
         }
     }
     
     private func cardCountLabelSetRadius() {
         cardCount.layer.masksToBounds = true
         cardCount.layer.cornerRadius = cardCount.frame.size.height/2.0
+    }
+    
+    @objc private func contextMenuDeleteRow(notification: Notification) {
+        guard let notificationInfo = notification.userInfo as? [String: IndexPath] else { return }
+        let deleteRow = notificationInfo["deleteRow"]!
+        taskCardTableView.deleteRows(at: [deleteRow], with: .automatic)
     }
 }

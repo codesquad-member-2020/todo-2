@@ -9,7 +9,7 @@
 import Foundation
 
 struct CategoryData: Codable {
-    var category_id: Int
+    var id: Int
     var title: String
     var cards: [CardDetailData]
 }
