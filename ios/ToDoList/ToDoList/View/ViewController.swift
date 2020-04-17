@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     @objc private func distributeData(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardData.ProjectData] else { return }
         self.cardData = notificationInfo["responseData"]
+        print(cardData)
         
         setModelAtViewController(targetViewController: toDoViewController, categoryData: cardData, index: 0)
         setModelAtViewController(targetViewController: progressViewController, categoryData: cardData, index: 1)
@@ -58,13 +59,15 @@ class ViewController: UIViewController {
     @objc private func movingCard(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: CardDetailData] else { return }
         let card = notificationInfo["moveCard"]
+        
         var doneCardList = completeViewContrller.tableViewDataSource.cardList?.cards
         var lastIndex = 0
         
-        doneCardList?.append(card!)
         if doneCardList?.count != 0 {
-            lastIndex = doneCardList!.count - 1
+            lastIndex = doneCardList![doneCardList!.endIndex-1].id
         }
+        
+        doneCardList?.append(card!)
         APIClient.apiClient.requestMoveCardToDone(destCategoryId: completeViewContrller.columnId!, cardId: card!.id, previousCardId: lastIndex)
     }
     
