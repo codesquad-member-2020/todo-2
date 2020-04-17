@@ -33,8 +33,9 @@ public class ProjectController {
     public ResponseEntity<ResponseBodyWrapper> editCard(@PathVariable long projectId,
                                                         @PathVariable long categoryId,
                                                         @PathVariable long cardId,
-                                                        @RequestBody CardTitleContent requestBody) {
-        boolean edited = projectService.editCard(projectId, categoryId, cardId, requestBody);
+                                                        @RequestBody CardTitleContent requestBody,
+                                                        @RequestAttribute("userId") Long userId) {
+        boolean edited = projectService.editCard(projectId, categoryId, cardId, requestBody, userId);
         if (edited) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }
@@ -44,9 +45,10 @@ public class ProjectController {
 
     @DeleteMapping("/projects/{projectId}/categories/{categoryId}/cards/{cardId}")
     public ResponseEntity<ResponseBodyWrapper> deleteCard(@PathVariable long projectId,
-                                                              @PathVariable long categoryId,
-                                                              @PathVariable long cardId) {
-        boolean deleted = projectService.softDeleteCard(projectId, categoryId, cardId);
+                                                          @PathVariable long categoryId,
+                                                          @PathVariable long cardId,
+                                                          @RequestAttribute("userId") Long userId) {
+        boolean deleted = projectService.softDeleteCard(projectId, categoryId, cardId, userId);
         if (deleted) {
             return ResponseEntity.ok(ResponseBodyWrapper.ok());
         }

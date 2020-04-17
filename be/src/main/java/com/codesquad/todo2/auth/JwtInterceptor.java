@@ -18,13 +18,14 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.debug("[*] preHandle -------------------------------------");
 
-	if (request.getMethod().equals("OPTIONS")) {
-            log.info("options 메서드는 통과");
-            return true;
-        }
+        if (request.getMethod().equals("OPTIONS")) {
+                log.info("options 메서드는 통과");
+                return true;
+            }
 
+        log.debug("[*] 토큰 체크 --------------------------------------------");
         String jwt = request.getHeader("Authorization");
-	log.debug("jwt string value {}:", jwt);
+	    log.debug("jwt string value {}:", jwt);
 
         if (jwt != null) {
             String token = jwt.replace("Bearer ", "");

@@ -39,4 +39,26 @@ public class LogAspect {
 
         return cardDto;
     }
+
+    @Around("execution(* com.codesquad.todo2.domain.project.ProjectService.softDeleteCard(..))")
+    public Object logDeleteCard(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object[] args = joinPoint.getArgs();
+        Long projectId = (Long) args[0];
+        Long categoryId = (Long) args[1];
+        Long cardId = (Long) args[2];
+        Long userId = (Long) args[3];
+
+        boolean returnValue = (boolean) joinPoint.proceed();
+        String cardTitle = logService.findCardTitleById(cardId);
+        String srcCategory = logService.findCategoryTitleById(categoryId);
+        Project project = projectService.findProjectByIdOrHandleNotFound(projectId);
+
+        Log log = new Log(userId, cardId, cardTitle, srcCategory, null, "removed");
+        project.addLog(log);
+        projectService.saveProject(project);
+
+        return returnValue;
+    }
+
+
 }

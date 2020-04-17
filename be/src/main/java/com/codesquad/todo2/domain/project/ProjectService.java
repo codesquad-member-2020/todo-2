@@ -7,6 +7,8 @@ import com.codesquad.todo2.domain.card.CardTitleContent;
 import com.codesquad.todo2.domain.category.Category;
 import com.codesquad.todo2.domain.category.CategoryDto;
 import com.codesquad.todo2.domain.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class ProjectService {
+    private static final Logger log = LoggerFactory.getLogger(ProjectService.class);
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -45,7 +48,7 @@ public class ProjectService {
 	return mapCardToCardDto(card);
     }
 
-    public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody) {
+    public boolean editCard(long projectId, long categoryId, long cardId, CardTitleContent requestBody, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
         String title = requestBody.getTitle();
@@ -55,11 +58,12 @@ public class ProjectService {
         card.setTitle(title);
         card.setContent(content);
 
+        log.debug("************여기 통과하나??**************");
         projectRepository.save(project);
         return true; // TODO: handle failure case
     }
 
-    public boolean softDeleteCard(long projectId, long categoryId, long cardId) {
+    public boolean softDeleteCard(long projectId, long categoryId, long cardId, Long userId) {
         Project project = findProjectByIdOrHandleNotFound(projectId);
         Category category = project.getCategoryById(categoryId);
         Card card = category.getCardById(cardId);

@@ -48,4 +48,9 @@ public class LogService {
         Optional<String> optionalCategoryTitle = projectRepository.findCategoryTitleById(categoryId);
         return optionalCategoryTitle.orElseThrow(() -> new NotFoundException("Category not found."));
     }
+
+    public String findCardTitleById(Long cardId) {
+        Optional<String> optionalCardTitle = projectRepository.findCardTitleById(cardId);
+        return optionalCardTitle.orElseThrow(() -> new NotFoundException("Card not found."));
+    }
 }
