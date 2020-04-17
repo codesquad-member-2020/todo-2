@@ -1,0 +1,311 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body, button, input, select, table, textarea {
+    font-family: Dotum, "돋움", Helvetica, sans-serif;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+    box-sizing: border-box;
+}
+
+button, input, select, textarea {
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: max-content auto;
+    height: 100vh;
+}
+
+.header {
+    background-color: #000000;
+    display: grid;
+    grid-template-columns: 12fr 0fr;
+    padding: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.header > div {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select:none;
+}
+
+.content{
+    padding: 8px;
+    display: grid;
+    grid-auto-columns: 274px;
+    grid-auto-flow: column;
+    grid-gap: 15px;
+}
+
+.column-list {
+    height: 100%;
+}
+
+.column {
+    background-color: #ebecf0;
+    border-radius: 5px;
+    display: grid;
+    grid-auto-rows: max-content;
+    height: max-content;
+    padding: 10px;
+}
+
+.column-top {
+    display: grid;
+    grid-template-columns: 1fr 6fr 0.4fr 0fr;
+    line-height: 18px;
+}
+
+.column-total {
+    background-color: #A9ACAE;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-weight: bolder;
+}
+
+.column-title {
+    font-weight: bolder;
+}
+
+.material-icons {
+    font-size: 18px;
+}
+
+.material-icons:hover {
+    background-color: #A9ACAE;
+    cursor: pointer;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #d8dbdd;
+    line-height: 18px;
+}
+
+.card-top {
+    display: flex;
+}
+
+.card-list {
+    justify-content: flex-start;
+    margin-right: 7px;
+    width: 17px;
+    height: 17px;
+}
+
+.card-delete {
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+.card-writer {
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.add-card-textarea > textarea {
+    width: 254px;
+    height: 60px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 2px;
+    border: 1px solid #d8dbdd;
+    border-radius: 5px;
+}
+
+.add-card-btn-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-card-btn-wrap > button {
+    width: 125px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #d8dbdd;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn-card-add[disabled] {
+    color: #ffffff;
+    background-color: #A9ACAE;
+}
+
+.btn-card-add {
+    color: #ffffff;
+    background-color: #31c553;
+}
+
+.edit-card-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 50;
+    top: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    visibility: hidden;
+}
+
+.edit-card-content {
+    position: absolute;
+    background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
+.edit-card-top {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: #F7F8FA;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+}
+
+.edit-card-close {
+    margin-right: 15px;
+}
+
+.edit-card-middle {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px 0px 15px;
+    font-weight: bolder;
+}
+
+.edit-card-title-label {
+    padding-bottom: 10px;
+}
+
+#edit-card-title {
+    width: 460px;
+    height: 250px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #d8dbdd;
+    border-radius: 5px;
+}
+
+.edit-card-bottom {
+    padding: 15px;
+}
+
+.edit-card-save {
+    color: #ffffff;
+    background-color: #31c553;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #d8dbdd;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.edit-card-save[disabled] {
+    background-color: #A9ACAE;
+}
+
+.show-modal {
+    visibility: visible;
+}
+
+.logs {
+    height: 100vh;
+    display: none;
+    font-size: 14px;
+    overflow: scroll;
+}
+
+.logs.active {
+    width: 400px;
+    color: #000000;
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.logs-menu-wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    background-color: #F7F8FA;
+    line-height: 15px;
+    border-bottom: 1px solid #C3C5C7;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.logs-menu {
+    display: flex;
+    line-height: 18px;
+}
+
+.logs-menu > div {
+    padding-left: 5px;
+}
+
+.menu-close {
+    margin-right: 5px;
+}
+
+.activity {
+    height: 25px;
+    background-color: #F7F8FA;
+    line-height: 18px;
+    border-bottom: 1px solid rgb(195, 197, 199);
+    display: flex;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.activity > div {
+    padding-left: 5px;
+}
+
+.activity-wrap > ul > li {
+    list-style: none;
+    color: #000000;
+    height: 40px;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.activity-wrap > ul > li > span {
+    color: #146FD8;
+    font-weight: bolder;
+}
