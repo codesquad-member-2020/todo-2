@@ -28,6 +28,7 @@ class HistoryViewController: UIViewController {
     @objc private func allocateData(notification: Notification) {
         guard let notificationInfo = notification.userInfo as? [String: LogData.LogDetailData] else { return }
         dataSource.logData = notificationInfo["historyData"]
+        dataSource.logData?.logs.reverse()
         historyTableView.reloadData()
     }
     

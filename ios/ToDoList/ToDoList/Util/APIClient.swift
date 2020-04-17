@@ -12,7 +12,7 @@ class APIClient {
     static let apiClient = APIClient()
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzEwMTQ1OH0.yhOmcW4hQioS9PclsZaM3CoU-PksKMY9amRXP3ltTR8"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2NvdHQiLCJ1c2VySWQiOjEsImV4cCI6MTU4NzE4Nzk3OH0.AGICyVXC3SQWqr9dEFNw7NM2ZPEuPqi9mr_AjTL0kP0"
     
     func requestAllCategoryCard() {
         guard let url = URL(string: "http://15.164.28.20:8080/projects/1") else { return }
@@ -141,7 +141,10 @@ class APIClient {
         dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
             if let error = error { print(error); return }
             
-            guard let data = data, let responseData = try? JSONDecoder().decode(LogData.self, from: data) else {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(.timeDecodingFormatter)
+            
+            guard let data = data, let responseData = try? decoder.decode(LogData.self, from: data) else {
                 print("responseDataError"); return; }
             
             if responseData.result == false { return }

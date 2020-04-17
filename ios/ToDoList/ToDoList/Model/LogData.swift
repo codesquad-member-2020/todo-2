@@ -18,6 +18,6 @@ struct LogData: Decodable {
     
     struct LogDetailData: Decodable {
         let projectId: Int
-        let logs: [LogDetailInfo]
+        var logs: [LogDetailInfo]
     }
 }
