@@ -58,7 +58,6 @@ public class ProjectService {
         card.setTitle(title);
         card.setContent(content);
 
-        log.debug("************여기 통과하나??**************");
         projectRepository.save(project);
         return true; // TODO: handle failure case
     }
